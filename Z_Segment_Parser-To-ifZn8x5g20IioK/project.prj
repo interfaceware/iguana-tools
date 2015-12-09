@@ -1,0 +1,17 @@
+{
+    "LocalDependencies": [
+        "example/duplicate_filter.lua",
+        "example/zsegment.lua"
+    ],
+    "LuaDependencies": [
+        "dup",
+        "hl7.zsegment"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1449680317",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
