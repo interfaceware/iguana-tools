@@ -1,4 +1,5 @@
 -- This module is useful if you'd like to be able to parse Z segments without going through the trouble of editing a VMD file
+-- Read http://help.interfaceware.com/kb/generic-z-segment-parser for more information
 
 require 'hl7.zsegment'
 -- The parser gets inserted into the built in "hl7" namespace.
