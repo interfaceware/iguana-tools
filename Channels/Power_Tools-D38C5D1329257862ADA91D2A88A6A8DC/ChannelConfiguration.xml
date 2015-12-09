@@ -6,7 +6,7 @@
    logging_level="1"
    use_message_filter="false">
    <to_mapper
-      guid="Z_Segment_Parser-To-ifZn8x5g20IioK"
+      guid="Power-Tools-To-ifZn8x5g20IioK"
       commit_id="e45ff85db77f7c2d02da0e643cc631074fb3cd88"
       commit_comment="Import Translators: Love it">
       <dequeue_list>
