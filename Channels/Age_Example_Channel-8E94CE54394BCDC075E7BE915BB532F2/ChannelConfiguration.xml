@@ -1,0 +1,24 @@
+<channel
+   name="Age Example Channel"
+   guid="8E94CE54394BCDC075E7BE915BB532F2"
+   description="This channel shows an example of using the age module.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/age-lua"
+   start_automatically="true"
+   logging_level="1"
+   use_message_filter="false">
+   <to_mapper
+      guid="Age_Example_Channel-To-ktIBdvuSC2AMum"
+      commit_id="da8d221b9ac3af2fd72c3b5b5bb9f177c8001759"
+      commit_comment="Age module committed.">
+      <dequeue_list>
+         <dequeue
+            source_guid="00000000000000000000000000000000"
+            dequeue_guid="66A7A0E7FCD7FF4C151E39F6A692A92D"/>
+      </dequeue_list>
+   </to_mapper>
+   <from_llp_listener
+      ack_vmd_path="${iguana_dir}/autoack.vmd"
+      port="8000"
+      connection_timeout="30"
+      unlimited_connection_timeout="false"
+      ack_style="fast"/>
+</channel>
