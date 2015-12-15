@@ -1,0 +1,24 @@
+<channel
+   name="CSV Parser"
+   guid="C9B4B049531306BB49A9A6851A227101"
+   description="Example CSV parser channel&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/csv_parse-lua"
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_mapper
+      guid="CSV_Parser-To-oXCtI53IRCEoLx"
+      commit_id="b7ca523618a741a596d79bea0d621a8335e6387e"
+      commit_comment="First commit">
+      <dequeue_list>
+         <dequeue
+            source_guid="00000000000000000000000000000000"
+            dequeue_guid="208E02F4B57FE2FDC4A046E86C82DC96"/>
+      </dequeue_list>
+   </to_mapper>
+   <from_llp_listener
+      ack_vmd_path="${iguana_dir}/autoack.vmd"
+      port="7007"
+      connection_timeout="30"
+      unlimited_connection_timeout="false"
+      ack_style="fast"/>
+</channel>
