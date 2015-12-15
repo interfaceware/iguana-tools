@@ -1,0 +1,51 @@
+<channel
+   name="hl7.serialize"
+   guid="50AAEAD3B2F8B3F4DAB2D23138CC06EB"
+   description="This shows a module for controlling explicitly what delimiters to encode an HL7 message in.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/hl7-serialize-lua"
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="true">
+   <to_llp_client
+      remote_host="localhost"
+      remote_port="5145"
+      wait_for_ack="true"
+      ack_timeout="10000"
+      ack_verification_type="0"
+      ack_vmd_path="${iguana_dir}/ack_verify.vmd"
+      retry_on_ack_timeout="true"
+      retry_on_ack_verification_failed="false"
+      unlimited_count_of_retry="false"
+      count_of_retry="5"
+      disconnect_between_retries="true"
+      ack_reconnect_interval="10000"
+      ack_error_handling="1"
+      persistent_connection="true"
+      connection_timeout="10000"
+      unlimited_max_count_of_reconnect="false"
+      max_count_of_reconnect="60"
+      connection_lost_reconnect_interval="10000">
+      <dequeue_list>
+         <dequeue
+            source_guid="00000000000000000000000000000000"
+            dequeue_guid="E78A0BA2BA1595FF023BC8E173287886"/>
+      </dequeue_list>
+   </to_llp_client>
+   <from_llp_listener
+      ack_vmd_path="${iguana_dir}/autoack.vmd"
+      port="7010"
+      connection_timeout="30"
+      unlimited_connection_timeout="false"
+      ack_style="fast"/>
+   <message_filter
+      filter_after_logging="true"
+      log_pre_post_filter_message="true"
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true"
+      translator_guid="hl7serialize-Filter-NhJtYLZTFI1WKH"
+      translator_commit_id="c4b9badd2f668eba14e849d4c8ca139894d23406"
+      translator_commit_comment="First commit">
+   </message_filter>
+</channel>
