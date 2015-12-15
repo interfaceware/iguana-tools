@@ -3,6 +3,7 @@
 -- are intended to be efficient - lookups done using a hashmap and maintaining the list of messages to expire using a linked list.
 -- Since the whole thing operates in memory after startup it should be fast and the use of MD5 hashes rather than storing the raw
 -- messages themselves limits the amount of memory overhead.
+-- Read http://help.interfaceware.com/kb/duplicate-message-filter for more information.
 
 local dup = {}
 
