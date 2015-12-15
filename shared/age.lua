@@ -72,5 +72,35 @@ function age.getAge(DOB)
    local ageMths = calcMths(DOB)
    return ageYrs, ageMths, ageDec
 end
+
+local HELP_DEF=[[{
+   "Desc": "Calculate age from date of birth (DOB).  Returns years, months and partial years.",
+   "Returns": [{
+         "Desc": "Years, months and partial years"
+      }
+   ],
+   "SummaryLine": "Calculate age from date of birth",
+   "SeeAlso": [
+      {
+         "Title": "Module for calculating date of birth.",
+         "Link": "http://help.interfaceware.com/code/details/age-lua"
+      }
+   ],
+   "Title": "age.getAge",
+   "Usage": "local Years, Months, PartialYears = age.getAge{DOB}",
+   "Parameters": [
+      {
+         "DOB": {
+            "Desc": "Date of birth <u>string or node</u>. "
+         }
+      }
+   ],
+   "Examples": [
+      "<pre>local Years, Months, PartialYears = age.getAge(DOB)</pre>"
+   ],
+   "ParameterTable": false
+}]]
+
+help.set{input_function=age.getAge, help_data=json.parse{data=HELP_DEF}}    
  
 return age

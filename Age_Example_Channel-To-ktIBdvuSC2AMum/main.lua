@@ -7,7 +7,6 @@ local age = require 'age'
 
 function main(Data)
    local Msg = hl7.parse{vmd ='example\\demo.vmd', data=Data}
-   
    -- using dateparse allows common date formats
    local AgeYr, AgeMth, AgeDec = age.getAge(Msg.PID[7][1]:D())
    trace(AgeYr, AgeMth, AgeDec)
