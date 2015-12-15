@@ -1,3 +1,5 @@
+-- Generic Z segment parser - read d http://help.interfaceware.com/kb/generic-z-segment-parser for more information.
+
 hl7.zsegment = {}
 
 local function ParseDelim(Data, DelimArray, Index, Compact)
