@@ -19,7 +19,7 @@ function main(Data)
    retry.call{func=UnreliableFunc,retry=20, pause=1, arg1=Data, funcname='UnreliableFunc', errorfunc=ErrorFunction}
 end
 
--- We simulate 
+-- We simulate intermittent errors - both fatal and non fatal.
 function UnreliableFunc(Data)
    if math.random(8) == 1 then
       error("We have a intermittent non fatal error!")
