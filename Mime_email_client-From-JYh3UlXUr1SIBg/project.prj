@@ -1,0 +1,17 @@
+{
+    "LocalDependencies": [
+        "iguana-logo.png",
+        "template.html",
+        "text.txt"
+    ],
+    "LuaDependencies": [
+        "mime"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1450286782",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
