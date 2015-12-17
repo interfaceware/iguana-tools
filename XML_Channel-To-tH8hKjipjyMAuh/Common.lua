@@ -5,7 +5,6 @@ require 'stringutil'
 
 function MapPatient(PID, X)
    PID[2][1]= X.id
-   
    -- We get the name using the :text() helper - this ensures
    -- the code will work even if the text between the tags is
    -- empty.  We convert the 'node' to a string so we can use
@@ -33,6 +32,11 @@ function ProcessPhone(PID, X)
       local Phone = X:child("phone", i)
       -- In case the phone text is not there we use this
       -- helper function
+      if Phone:text():S() == '' then
+         -- Show usage of setText helper from xml module
+         Phone:setText('Unknown')
+      end
+      
       local Number = Phone:text()
       if Phone.type:S() == "home" then
          -- In case the phone number is empty

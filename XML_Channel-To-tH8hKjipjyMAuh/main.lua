@@ -2,6 +2,9 @@
 -- See http://help.interfaceware.com/kb/xml-node-functions
 require 'xml'
 
+-- This project shows a whole suite a techniques which are handy when dealing with
+-- XML - in this case mapping to an HL7 message.
+
 -- This project has some local extra modules.
 require 'MapADT'
 require 'MapLab'
@@ -11,6 +14,7 @@ local EventMap = {lab='Lab', register='ADT'}
 
 function main(Data)
    local X = xml.parse{data=Data}
+   
    local EventType = X.message.event.type:S()
    
    local MsgName = EventMap[EventType]
@@ -31,4 +35,24 @@ function main(Data)
    -- this action table could be defined outside of main
    local ActionTable = {ADT=MapADT, Lab=MapLab}
    ActionTable[Msg:nodeName()](Msg, X)
+   
+   ManipulateXML(X)
+   trace(Msg)
+   trace(Msg:S())
+end
+
+-- These functions illustrate the utility of the xml module.
+function ManipulateXML(X)
+   -- Add an element
+   X.message:addElement("extra_info")
+   -- Let's set an attribute on that new elemement
+   X.message.extra_info:setAttr("message_id", iguana.messageId())
+   trace(X.message)
+   
+   -- For more control over where the element gets
+   -- inserted
+   X.message:insert(1, xml.ELEMENT, 'first')
+   X.message.first:setText("Notice this goes first")
+   X.message.first:setAttr("fun", "withxml")
+   trace(X.message)
 end

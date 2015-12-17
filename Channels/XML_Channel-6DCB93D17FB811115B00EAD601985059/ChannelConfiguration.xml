@@ -7,8 +7,8 @@
    use_message_filter="false">
    <to_mapper
       guid="XML_Channel-To-tH8hKjipjyMAuh"
-      commit_id="1e08505317a4a8dfa0ff37ba385f181a5f20ba90"
-      commit_comment="First commit of XML example.">
+      commit_id="b891cb8fbc768349332085199c7c122297a81543"
+      commit_comment="Added more stuff showing xml manipulation.">
    </to_mapper>
    <from_channel/>
 </channel>
