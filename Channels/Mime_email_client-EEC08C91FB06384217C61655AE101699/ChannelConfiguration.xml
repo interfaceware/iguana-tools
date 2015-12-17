@@ -1,7 +1,7 @@
 <channel
    name="Mime email client"
    guid="EEC08C91FB06384217C61655AE101699"
-   description="Example of sending a MIME encoded email with attachments.&#xD;&#xA;&#xD;&#xA;See: http://help.interfaceware.com/code/details/mime-lua"
+   description="Send a rich HTML MIME encoded email with attachments.&#xD;&#xA;&#xD;&#xA;See: http://help.interfaceware.com/code/details/mime-lua"
    start_automatically="false"
    logging_level="1"
    use_message_filter="false">
@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Mime_email_client-From-JYh3UlXUr1SIBg"
-      commit_id="2c3f34187a5765392e386658faf93d5ddf36019a"
-      commit_comment="Committing the changes."
+      commit_id="f8998856b912d7a213496161db6bf533224b0dfd"
+      commit_comment="Import Translators: Importing channels"
       poll_time="100000">
    </from_mapper>
 </channel>
