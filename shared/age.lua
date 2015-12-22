@@ -1,3 +1,5 @@
+require 'dateparse'
+
 local age = {}
  
 local function isLeapYr(Year)
@@ -91,7 +93,7 @@ local HELP_DEF=[[{
    "Parameters": [
       {
          "DOB": {
-            "Desc": "Date of birth <u>string or node</u>. "
+            "Desc": "Date of birth <u>string</u>. "
          }
       }
    ],

@@ -7,8 +7,8 @@
    use_message_filter="false">
    <to_mapper
       guid="Age_Example_Channel-To-ktIBdvuSC2AMum"
-      commit_id="d691779c3be4af3bea792d421bff67f87975c353"
-      commit_comment="Added help.">
+      commit_id="85ace6b241f2d1ba686ff3e3f395774dd606d1e9"
+      commit_comment="Import Translators: age example">
       <dequeue_list>
          <dequeue
             source_guid="00000000000000000000000000000000"
