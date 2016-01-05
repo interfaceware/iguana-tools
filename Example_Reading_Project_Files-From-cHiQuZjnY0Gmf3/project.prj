@@ -1,0 +1,15 @@
+{
+    "LocalDependencies": [
+        "local.xml"
+    ],
+    "LuaDependencies": [],
+    "OtherDependencies": [
+        "example.xml"
+    ],
+    "timestamp": "1452023864",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}

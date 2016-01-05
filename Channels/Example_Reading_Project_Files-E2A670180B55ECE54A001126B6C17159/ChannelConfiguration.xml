@@ -1,0 +1,16 @@
+<channel
+   name="Example Reading Project Files"
+   guid="E2A670180B55ECE54A001126B6C17159"
+   description="This example shows how one can programmatically read files that are in a translator&apos;s own project."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="Example_Reading_Project_Files-From-cHiQuZjnY0Gmf3"
+      commit_id="7aa650c2e6095360bca9fd4d9f79e84720895aa6"
+      commit_comment="Put in log info."
+      poll_time="1000000">
+   </from_mapper>
+</channel>
