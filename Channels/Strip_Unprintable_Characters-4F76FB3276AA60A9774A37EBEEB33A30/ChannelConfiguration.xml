@@ -1,0 +1,16 @@
+<channel
+   name="Strip Unprintable Characters"
+   guid="4F76FB3276AA60A9774A37EBEEB33A30"
+   description="Sometimes you have large strings containing non ascii characters that can cause some systems to hiccup.&#xD;&#xA;&#xD;&#xA;This example shows some simple fast code to handle this problem by removing them."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="Striping_Non_ASCII_Characters-From-yo5nC9mA7QZdYs"
+      commit_id="c46d7fc229ca5daf7903454db47f9e4fbef02efc"
+      commit_comment="Made an efficient binary stripping routine."
+      poll_time="10000">
+   </from_mapper>
+</channel>
