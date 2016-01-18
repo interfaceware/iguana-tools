@@ -1,0 +1,16 @@
+<channel
+   name="Map data fields"
+   guid="6082C1CE346B5FA57FDA0C0FB2CAA983"
+   description="This shows example mapping codes for sex from one set of values to another using the codemap module.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/codemap-lua&#xD;&#xA;&#xD;&#xA;It also shows how to test for sets of codes."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="Map_data_fields-From-GLTDtSXW1YUAu1"
+      commit_id="dcf3a07154829d31d3cf4f1c4a148f769fd8b802"
+      commit_comment="First commit"
+      poll_time="10000">
+   </from_mapper>
+</channel>
