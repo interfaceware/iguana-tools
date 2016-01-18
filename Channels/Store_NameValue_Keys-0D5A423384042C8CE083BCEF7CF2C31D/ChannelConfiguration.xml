@@ -1,0 +1,25 @@
+<channel
+   name="Store Name=Value Keys"
+   guid="0D5A423384042C8CE083BCEF7CF2C31D"
+   description="This is an example of using the very useful store module:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/store-lua&#xD;&#xA;&#xD;&#xA;This stores data persistently in a local SQLlite database."
+   start_automatically="true"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="Store_NameValue_Keys-From-003F6DfPoCs1MY"
+      commit_id="5172e70069bf2f69207512f325ce68db5b20d6b6"
+      commit_comment="Store commit"
+      poll_time="10000">
+   </from_mapper>
+   <message_filter
+      filter_after_logging="false"
+      log_pre_post_filter_message="true"
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true">
+   </message_filter>
+</channel>
