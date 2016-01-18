@@ -1,0 +1,51 @@
+<channel
+   name="Remove Duplicate Messages"
+   guid="56EEEF4BD385FA085220CD7F0E0B1BA0"
+   description="This example filter will remove duplicate messages. It maintains a history of messages seen before and compares to current messages:&#xD;&#xA;&#xD;&#xA;See http://help.interfaceware.com/code/details/dup-lua&#xD;&#xA;&#xD;&#xA;"
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="true">
+   <to_llp_client
+      remote_host="localhost"
+      remote_port="5145"
+      wait_for_ack="true"
+      ack_timeout="10000"
+      ack_verification_type="0"
+      ack_vmd_path="/Applications/iNTERFACEWARE-Iguana.app/Contents/iNTERFACEWARE-Iguana/ack_verify.vmd"
+      retry_on_ack_timeout="true"
+      retry_on_ack_verification_failed="false"
+      unlimited_count_of_retry="false"
+      count_of_retry="5"
+      disconnect_between_retries="true"
+      ack_reconnect_interval="10000"
+      ack_error_handling="1"
+      persistent_connection="true"
+      connection_timeout="10000"
+      unlimited_max_count_of_reconnect="false"
+      max_count_of_reconnect="60"
+      connection_lost_reconnect_interval="10000">
+      <dequeue_list>
+         <dequeue
+            source_guid="00000000000000000000000000000000"
+            dequeue_guid="06B207B793AB2C70F8F6E498B9F7DE5B"/>
+      </dequeue_list>
+   </to_llp_client>
+   <from_llp_listener
+      ack_vmd_path="/Applications/iNTERFACEWARE-Iguana.app/Contents/iNTERFACEWARE-Iguana/autoack.vmd"
+      port="7006"
+      connection_timeout="30"
+      unlimited_connection_timeout="false"
+      ack_style="fast"/>
+   <message_filter
+      filter_after_logging="true"
+      log_pre_post_filter_message="true"
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true"
+      translator_guid="Remove_Duplicate_Messages-Filter-rS0aDvqsezmqca"
+      translator_commit_id="2669bb766249996ca1a1f90564bdfa2a965cf8e9"
+      translator_commit_comment="Import Translators: Julian repo">
+   </message_filter>
+</channel>

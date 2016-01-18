@@ -149,8 +149,12 @@ local HELP_DEF=[[{
    "SummaryLine": "Is message a duplicate?",
    "SeeAlso": [
       {
-         "Title": "Module for removing duplicate messages.",
-         "Link": "http://help.interfaceware.com/kb/duplicate-message-filter"
+         "Title": "Duplicate Filter.",
+         "Link": "http://help.interfaceware.com/v6/duplicate-filter"
+      },
+      {
+         "Title": "dup.lua.",
+         "Link": "http://help.interfaceware.com/code/details/dup-lua"
       }
    ],
    "Title": "dup.isDuplicate",
@@ -163,7 +167,7 @@ local HELP_DEF=[[{
       },
       {
          "lookback_amount": {
-            "Desc": "Number of messages to look back at to check for duplicates. <u>number</u>. "
+            "Desc": "Number of messages to look back at to check for duplicates <u>number</u>. "
          }
       }
    ],
