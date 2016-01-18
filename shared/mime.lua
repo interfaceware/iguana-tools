@@ -186,16 +186,17 @@ end
 local mimehelp = {
    Title="mime.send";
    Usage="mime.send{server=<value> [, username=<value>] [, ...]}",
+   SummaryLine="Sends an email using the SMTP protocol.",
    Desc=[[Sends an email using the SMTP protocol. A wrapper around net.smtp.send.
    Accepts the same parameters as net.smtp.send, with an additional "attachments"
-   parameter:
+   parameter.
    ]];
    ["Returns"] = {
-      {Desc="Normally nothing.  If the debug flag is set to true then the email body and email header is returned."},
+      {Desc="Normally nothing. If the debug flag is set to true then the email body and email header is returned  <u>string</u>."},
    };
    ParameterTable= true,
    Parameters= {
-      {attachments= {Desc='A table of absolute filenames to be attached to the email.'}},
+      {attachments= {Desc='A table of absolute filenames to be attached to the email <u>table</u>.'}},
    };
    Examples={
       [[local Results = mime.send{
@@ -207,12 +208,12 @@ local mimehelp = {
    };
    SeeAlso={
       {
-         Title="net.smtp - sending mail",
-         Link="http://wiki.interfaceware.com/1039.html#send"
+         Title="net.smtp - in our code repository",
+         Link="http://help.interfaceware.com/api/#net_smtp_send"
       },
       {
-         Title="Tips and tricks from John Verne",
-         Link="http://wiki.interfaceware.com/1342.html"
+         Title="Mime email client ",
+         Link="http://help.interfaceware.com/v6/mime-email-client"
       }
    }
 }
