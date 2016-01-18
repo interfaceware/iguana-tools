@@ -14,6 +14,9 @@ local function isLeapYr(Year)
 end
  
 local function calcYrs(DOB)
+   if type(DOB) ~= 'string' then
+      DOB = tostring(DOB)
+   end
    local _, dob = dateparse.parse(DOB)
    
    local T = os.time()
@@ -51,7 +54,10 @@ local function calcYrs(DOB)
    end 
 end 
 
-local function calcMths(DOB)    
+local function calcMths(DOB)
+   if type(DOB) ~= 'string' then
+      DOB = tostring(DOB)
+   end
    local _, dob = dateparse.parse(DOB)    
    local _, currDt = dateparse.parse(os.date())    
    local ageMths    

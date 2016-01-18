@@ -3,7 +3,7 @@
 -- iNTERFACEWARE permits you to use, modify, and distribute this file in accordance
 -- with the terms of the iNTERFACEWARE license agreement accompanying the software
 -- in which it is used.
--- See http://help.interfaceware.com/code/details/dateparse-lua
+-- http://help.interfaceware.com/code/details/dateparse-lua
  
 local wdays = { 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
                 'Saturday', 'Sunday' }
@@ -226,7 +226,7 @@ if true then
       '[dddd, ]d[w] mmmm yy[yy][ HH:MM[:SS][ tt][ ZZZ]]',
       '[ddd, ]dd mmm yy[yy] HH:MM:SS zzzz',
       -- The os.date('%c') Format
-      '[dddd, ]mmmm dd, H:MM[:SS][ tt] yyyy',
+      '[dddd, ]mmmm [d]d, H:MM[:SS][ tt] yyyy',
       -- Other common formats
       'd-mmmm-yy[yy][ H:MM[:SS][ tt][ ZZZ]]',
    }
@@ -295,7 +295,7 @@ function dateparse.parse(s,fmt)
          table.concat(all_errors, '\n'), 2)
 end
  
--- Convert a time value to a database timestamp.  Automatically
+-- Convert a time value to a database timestamp. Automatically
 -- detects the input format, unless you specify one (fmt).
 --
 function string:T(fmt)
@@ -311,7 +311,7 @@ function string:D(fmt)
    return t and os.date('%Y-%m-%d 00:00:00', t)
 end
  
--- Convert a time value to an HL7 timestamp.  Automatically
+-- Convert a time value to an HL7 timestamp. Automatically
 -- detects the input format, unless you specify one (fmt).
 --
 function string:TS(fmt)
@@ -323,5 +323,308 @@ end
 function node:T (fmt) return tostring(self):T (fmt) end
 function node:D (fmt) return tostring(self):D (fmt) end
 function node:TS(fmt) return tostring(self):TS(fmt) end
- 
+
+-- help for functions
+local dateparse_parse = {
+   Title="dateparse.parse";
+   Usage="dateparse.parse(date [, format])",
+   Desc=[[Use the fuzzy date/time parser to automatically 
+   translate a wide variety of date/time formats. 
+   <p><b>Note</b>: If your date format is not 
+   recognized, you can update the list of formats in the 
+   module, or pass a one-off format as a second parameter to the 
+   dateparse.parse() function.
+   <p>We also included the three node functions, that return 
+   common date formats: mynode:D() returns a database date without time,
+   mynode:T() returns a database datetime including time, mynode:TS() 
+   returns an HL7 timestamp.
+   <p><b>Note</b>: You can use these as a template to create similar
+   functions for other common date formats
+   ]];
+   ParameterTable= false,
+   Parameters= {
+      {date= {Desc='Date to be parsed <u>string</u>.'}},
+      {format= {Desc='Custom date format to use for parsing <u>string</u>.', Opt = true}},
+   };
+   Returns ={ {Desc='Time as a Unix Epoch time value <u>unix epoch time</u>'}, 
+      {Desc=[[Time as a table containing date/time components <u>table</u>]]},
+   },
+   Examples={
+      [[-- using the dateparse :D() node function
+      
+function main(Data)
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+   
+   MapPatient(T.patient[1], Msg.PID)   
+end
+
+function MapPatient(T, PID)
+   T.Id = PID[3][1][1]
+   T.LastName = PID[5][1][1][1]
+   T.GivenName = PID[5][1][2]
+   -- example of using the dateparse :D() node
+   -- function to return a date without time
+   T.Dob = PID[7][1]:D()
+end
+   ]],
+      [[-- comparing dateparse :D(), :T(), and :TS() node functions
+      
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+
+   local Dob = Msg.PID[7][1]
+   trace(Dob)      --> node containing '19830711183045'
+   
+   -- date compatible with database table node tree
+   trace(Dob:D())  --> '1983-07-11 00:00:00' 
+   
+   -- datetime compatible with database table node tree
+   trace(Dob:T())  --> '1983-07-11 18:30:45'
+   
+   -- HL7 timestamp - not compatible with db table
+   trace(Dob:TS()) --> '19830711183045'
+   ]],
+      [[-- using the dateparse.parse() function directly
+      
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+
+   local Dob = Msg.PID[7][1]
+   trace(Dob)      --> node containing '19830711183045'
+   
+   -- returns date as Unix Epoch time value and as a table
+   local t, d = dateparse.parse(Dob:nodeValue())
+   trace(t, d)
+   
+   -- convert t (unix epoch time) to a string like :D()
+   os.date('%Y-%m-%d 00:00:00',t) --> '1983-07-11 00:00:00'
+   -- produces the same result
+   Dob:D()                        --> '1983-07-11 00:00:00'
+
+   -- using a custom date format
+   t, d = dateparse.parse("2PM March 5th '77", "H[:MM]tt mmmm dw [']yy[yy]")
+   tostring(t):T()  --> '1977-03-05 14:00:00'
+   tostring(t):D()  --> '1977-03-05 00:00:00'
+   tostring(t):TS() --> '19770305140000'
+   ]],
+   };
+   SeeAlso={
+      {
+         Title="dateparse.lua - parsing dates",
+         Link="http://help.interfaceware.com/code/details/dateparse-lua"
+      },
+      {
+         Title="Date/time conversion: Using the fuzzy date/time parser (Iguana 5 documenation)",
+         Link="http://help.interfaceware.com/kb/298"
+      }
+   }
+}
+
+help.set{input_function=dateparse.parse, help_data=dateparse_parse}
+
+local node_D = {
+   Title="node.D";
+   Usage="dateNode:D([format]) or node.D(date [, format])",
+   Desc=[[Use the fuzzy date/time parser to automatically 
+   translate a wide variety of date/time formats. 
+   <p>This is one of the three node functions, that return 
+   common date formats: mynode:D() returns a database date without time,
+   mynode:T() returns a database datetime including time, mynode:TS() 
+   returns an HL7 timestamp.
+   <p>An example return is like this: '1983-07-11 00:00:00'
+   <p><b>Note</b>: You can use these as a template to create similar
+   functions for other common date formats
+   ]];
+   ParameterTable= false,
+   Parameters= {
+      {date= {Desc='Date to be parsed <u>string</u>.'}},
+      {format= {Desc='Custom date format to use for parsing <u>string</u>.', Opt = true}},
+   };
+   Returns ={ {Desc='Time as database date without time <u>string</u>'}, 
+      {Desc=[[Time as a table containing date/time components <u>table</u>]]},
+   },
+   Examples={
+      [[-- using the dateparse :D() node function
+      
+function main(Data)
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+   
+   MapPatient(T.patient[1], Msg.PID)   
+end
+
+function MapPatient(T, PID)
+   T.Id = PID[3][1][1]
+   T.LastName = PID[5][1][1][1]
+   T.GivenName = PID[5][1][2]
+   -- example of using the dateparse :D() node
+   -- function to return a date without time
+   T.Dob = PID[7][1]:D()
+end
+   ]],
+      [[-- comparing dateparse :D(), :T(), and :TS() node functions
+      
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+
+   local Dob = Msg.PID[7][1]
+   trace(Dob)      --> node containing '19830711183045'
+   
+   -- date compatible with database table node tree
+   trace(Dob:D())  --> '1983-07-11 00:00:00' 
+   
+   -- datetime compatible with database table node tree
+   trace(Dob:T())  --> '1983-07-11 18:30:45'
+   
+   -- HL7 timestamp - not compatible with db table
+   trace(Dob:TS()) --> '19830711183045'
+   ]],
+   };
+   SeeAlso={
+      {
+         Title="dateparse.lua - parsing dates",
+         Link="http://help.interfaceware.com/code/details/dateparse-lua"
+      },
+      {
+         Title="Date/time conversion: Using the fuzzy date/time parser (Iguana 5 documenation)",
+         Link="http://help.interfaceware.com/kb/298"
+      }
+   }
+}
+
+help.set{input_function=node.D, help_data=node_D}
+
+local node_T = {
+   Title="node.T";
+   Usage="dateNode:T([format]) or node.T(date [, format])",
+   Desc=[[Use the fuzzy date/time parser to automatically 
+   translate a wide variety of date/time formats. 
+   <p>This is one of the three node functions, that return 
+   common date formats: mynode:D() returns a database date without time,
+   mynode:T() returns a database datetime including time, mynode:TS() 
+   returns an HL7 timestamp.
+   <p>An example return is like this: '1983-07-11 18:30:45'
+   <p><b>Note</b>: You can use these as a template to create similar
+   functions for other common date formats
+   ]];
+   ParameterTable= false,
+   Parameters= {
+      {date= {Desc='Date to be parsed <u>string</u>.'}},
+      {format= {Desc='Custom date format to use for parsing <u>string</u>.', Opt = true}},
+   };
+   Returns ={ {Desc='Time as database date without time <u>string</u>'}, 
+      {Desc=[[Time as a table containing date/time components <u>table</u>]]},
+   },
+   Examples={
+      [[-- using the dateparse :T() function
+      
+function main(Data)
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+   
+   MapPatient(T.patient[1], Msg.PID)   
+end
+
+function MapPatient(T, PID)
+   T.Id = PID[3][1][1]
+   T.LastName = PID[5][1][1][1]
+   T.GivenName = PID[5][1][2]
+   -- example of using the dateparse :T()
+   -- function to return a date with time
+   T.Dob = PID[7][1]:T()
+end
+   ]],
+      [[-- comparing dateparse :D(), :T(), and :TS() node functions
+      
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+
+   local Dob = Msg.PID[7][1]
+   trace(Dob)      --> node containing '19830711183045'
+   
+   -- date compatible with database table node tree
+   trace(Dob:D())  --> '1983-07-11 00:00:00' 
+   
+   -- datetime compatible with database table node tree
+   trace(Dob:T())  --> '1983-07-11 18:30:45'
+   
+   -- HL7 timestamp - not compatible with db table
+   trace(Dob:TS()) --> '19830711183045'
+   ]],
+   };
+   SeeAlso={
+      {
+         Title="dateparse.lua - parsing dates",
+         Link="http://help.interfaceware.com/code/details/dateparse-lua"
+      },
+      {
+         Title="Date/time conversion: Using the fuzzy date/time parser (Iguana 5 documenation)",
+         Link="http://help.interfaceware.com/kb/298"
+      }
+   }
+}
+
+help.set{input_function=node.T, help_data=node_T}
+
+local node_TS = {
+   Title="node.TS";
+   Usage="dateNode:TS([format]) or node.TS(date [, format])",
+   Desc=[[Use the fuzzy date/time parser to automatically 
+   translate a wide variety of date/time formats. 
+   <p>This is one of the three node functions, that return 
+   common date formats: mynode:D() returns a database date without time,
+   mynode:T() returns a database datetime including time, mynode:TS() 
+   returns an HL7 timestamp.
+   <p>An example return is like this: '19830711183045'
+   <p><b>Note</b>: You can use these as a template to create similar
+   functions for other common date formats
+   ]];
+   ParameterTable= false,
+   Parameters= {
+      {date= {Desc='Date to be parsed <u>string</u>.'}},
+      {format= {Desc='Custom date format to use for parsing <u>string</u>.', Opt = true}},
+   };
+   Returns ={ {Desc='Time as database date without time <u>string</u>'}, 
+      {Desc=[[Time as a table containing date/time components <u>table</u>]]},
+   },
+   Examples={
+      [[-- using the dateparse :TS() node function
+
+   -- convert current date to an HL7 timestamp
+   local hl7Date = os.date():TS()
+   trace(hl7Date)
+   ]],
+      [[-- comparing dateparse :D(), :T(), and :TS() node functions
+      
+   local Msg = hl7.parse{data=Data, vmd='demo.vmd'}
+   local T = db.tables{vmd='demo.vmd', name='ADT'}
+
+   local Dob = Msg.PID[7][1]
+   trace(Dob)      --> node containing '19830711183045'
+   
+   -- date compatible with database table node tree
+   trace(Dob:D())  --> '1983-07-11 00:00:00' 
+   
+   -- datetime compatible with database table node tree
+   trace(Dob:T())  --> '1983-07-11 18:30:45'
+   
+   -- HL7 timestamp - not compatible with db table
+   trace(Dob:TS()) --> '19830711183045'
+   ]],
+   };
+   SeeAlso={
+      {
+         Title="dateparse.lua - parsing dates",
+         Link="http://help.interfaceware.com/code/details/dateparse-lua"
+      },
+      {
+         Title="Date/time conversion: Using the fuzzy date/time parser (Iguana 5 documenation)",
+         Link="http://help.interfaceware.com/kb/298"
+      }
+   }
+}
+
+help.set{input_function=node.TS, help_data=node_TS}
+
 return dateparse

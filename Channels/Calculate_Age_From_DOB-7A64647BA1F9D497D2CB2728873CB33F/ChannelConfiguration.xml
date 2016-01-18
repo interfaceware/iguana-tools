@@ -1,0 +1,24 @@
+<channel
+   name="Calculate Age From DOB"
+   guid="7A64647BA1F9D497D2CB2728873CB33F"
+   description="This channel has a module which can be used to calculate the age of someone from their date of birth (DOB)."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_mapper
+      guid="Calculate_Age_From_DOB-To-Di9sAF0wwl4lwV"
+      commit_id="4576857549864cf1fd7da64b10b03d05487ddefb"
+      commit_comment="Committed this and fixed the module so that it will take in node trees without casting.">
+      <dequeue_list>
+         <dequeue
+            source_guid="00000000000000000000000000000000"
+            dequeue_guid="9B079AB7C34A6903AE741545F74F87D1"/>
+      </dequeue_list>
+   </to_mapper>
+   <from_llp_listener
+      ack_vmd_path="/Applications/iNTERFACEWARE-Iguana.app/Contents/iNTERFACEWARE-Iguana/autoack.vmd"
+      port="7501"
+      connection_timeout="30"
+      unlimited_connection_timeout="false"
+      ack_style="fast"/>
+</channel>
