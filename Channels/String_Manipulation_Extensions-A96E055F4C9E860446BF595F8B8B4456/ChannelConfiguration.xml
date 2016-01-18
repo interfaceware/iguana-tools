@@ -1,0 +1,25 @@
+<channel
+   name="String Manipulation Extensions"
+   guid="A96E055F4C9E860446BF595F8B8B4456"
+   description="This module has some extra string utility functions:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/stringutil-lua&#xD;&#xA;&#xD;&#xA;It also creates a set of equivalent methods that will work directly on HL7, XML, database trees etc.  This means it is not necessary to cast these to strings before applying common string manipulation operations."
+   start_automatically="true"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="String_Manipulation_Extensions-From-erEpGyvSTOQMRJ"
+      commit_id="cc765734e592d7e3b62e32b2793f732d6c3c6f14"
+      commit_comment="Extended the stringutils so that it create equivalent methods for node objects."
+      poll_time="10000">
+   </from_mapper>
+   <message_filter
+      filter_after_logging="false"
+      log_pre_post_filter_message="true"
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true">
+   </message_filter>
+</channel>
