@@ -1,0 +1,24 @@
+<channel
+   name="Parse any date time value"
+   guid="83BFBB3932D35E49DD6FA9BDC50B6091"
+   description="Shows the use of dateparse module:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/dateparse-lua&#xD;&#xA;&#xD;&#xA;This is a fuzzy parser which an automatically parse a wide variety of date/time formats."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_mapper
+      guid="Parse_any_date_time_value-To-Yz86qWgi6CTX3j"
+      commit_id="8ab810b82eb7148af31e0b0e27118bd97cb24eb3"
+      commit_comment="First commit">
+      <dequeue_list>
+         <dequeue
+            source_guid="00000000000000000000000000000000"
+            dequeue_guid="805B71EEF17B247CE29F10A9F614727A"/>
+      </dequeue_list>
+   </to_mapper>
+   <from_llp_listener
+      ack_vmd_path="/Applications/iNTERFACEWARE-Iguana.app/Contents/iNTERFACEWARE-Iguana/autoack.vmd"
+      port="8045"
+      connection_timeout="30"
+      unlimited_connection_timeout="false"
+      ack_style="fast"/>
+</channel>

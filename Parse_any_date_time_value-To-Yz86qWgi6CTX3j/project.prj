@@ -1,0 +1,15 @@
+{
+    "LocalDependencies": [],
+    "LuaDependencies": [
+        "dateparse"
+    ],
+    "OtherDependencies": [
+        "demo.vmd"
+    ],
+    "timestamp": "1453136397",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
