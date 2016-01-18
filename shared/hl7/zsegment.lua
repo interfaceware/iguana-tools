@@ -1,4 +1,5 @@
--- Generic Z segment parser - read d http://help.interfaceware.com/kb/generic-z-segment-parser for more information.
+-- Generic Z segment parser
+-- http://help.interfaceware.com/kb/generic-z-segment-parser
 
 hl7.zsegment = {}
 
@@ -23,7 +24,6 @@ local function ParseDelim(Data, DelimArray, Index, Compact)
    return Result
 end
 
-
 local function AddZSegment(List, Segment, Compact)
    local Fields = Segment:split('|')
    local SegmentName = Fields[1]
@@ -35,7 +35,6 @@ local function AddZSegment(List, Segment, Compact)
    end
    List[SegmentName][#List[SegmentName]+1] = Fields
 end
-
 
 function hl7.zsegment.parse(T)
    local Segments = T.data:split("\r")
@@ -49,16 +48,27 @@ function hl7.zsegment.parse(T)
 end
 
 local HELP_DEF=[[{
-   "Desc": "Parses an HL7/EDI/X12 message and extracts Z segments which it returns in a Lua table. ",
+   "Desc": "Parses an HL7/EDI/X12 message and extracts Z segments which it returns in a Lua table. 
+   <p>This module gives us two parsing options: \"Expanded\" (compact=false) which pushes all the
+   data down to the leaf level, \"Compact\" (compact=true) where we keep the data at a higher 
+   level (this assumes there are no sub fields and repeating fields) 
+   <p>Using the \"Expanded\" mode is safer as it gives consistent results for messages with/without
+   sub-fields and repeating fields. \"Compact\" mode however will fail (give different results) for
+   messages with/without sub-fields and repeating fields. <p>If you have optional sub-fields or 
+   repeats then you need to use the \"Expanded\" mode.",
    "Returns": [
       {
-         "Desc": "A lua table with the Z segments parsed out."
+         "Desc": "A lua table with the Z segments parsed out <u>table</u>."
       }
    ],
    "SummaryLine": "Parses an HL7/EDI/X12 message for Z-zegments without a vmd.",
    "SeeAlso": [
       {
-         "Title": "Parsing Z segments without a vmd.",
+         "Title": "hl7.zsegment.lua.",
+         "Link": "http://help.interfaceware.com/code/details/hl7-zsegment-lua"
+      },
+      {
+         "Title": "Parsing Z segments without a vmd (Iguana 5 documentation).",
          "Link": "http://help.interfaceware.com/kb/generic-z-segment-parser"
       }
    ],
@@ -72,7 +82,7 @@ local HELP_DEF=[[{
       },
       {
          "compact": {
-            "Desc": "If true then the parsed tree will push all data to the lowest level <u>boolean</u>. "
+            "Desc": "If <b>false</b> then the parsed tree will push all data to the lowest level <u>boolean</u>. "
          }
       }
    ],
