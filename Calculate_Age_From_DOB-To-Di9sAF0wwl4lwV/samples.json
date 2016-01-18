@@ -1,8 +1,0 @@
-{
-    "Samples": [
-        {
-            "Message": "MSH|^~\\&|CowZing|Lab|Main HIS|St. Micheals|20090310013933||ADT^A07|DB1C7056D202123C4D5E64B9104834B576FCDA873E03E6137ABE64FCED2730B7|P|2.6|\rEVN||20011121113816||||20100822062410|\rPID|||7587794||Adams^Tracy||19830711|F||EU|363 Miller Lane^^ST. LOUIS^MO^96735|||||||27-974-964|325-19-98|\rNK1|1|Muir^Fred|Sibling|\rNK1|2|Muir^Fred|Second Cousin|\rNK1|3|WHITE^Mary|Grandchild|\rPV1||||||||^Adams^Gary^F|||||||||||6666185|||||||||||||||||||||||||20030811015751|\rOBX|||WT^WEIGHT||89|pounds|\rOBX|||HT^HEIGHT||49|cm|\r",
-            "Name": "Message 1"
-        }
-    ]
-}
