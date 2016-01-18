@@ -1,8 +1,0 @@
-{
-    "Samples": [
-        {
-            "Message": "MSH|^~\\&|AcmeMed|Lab|Main HIS|St. Micheals|20110213144932||ADT^A03|9B38584D9903051F0D2B52CC0148965775D2D23FE4C51BE060B33B6ED27DA820|P|2.6|\rEVN||20110213144532||||20110213145902|\rPID|||4525285^^^ADT1||Smith^Tracy||19980210|F||Martian|86 Yonge St.^^ST. LOUIS^MO^51460|||||||10-346-6|284-517-569|\rNK1|1|Smith^Gary|Second Cousin|\rPV1||E||||||5101^Garland^Mary^F^^DR|||||||||||1318095^^^ADT1|||||||||||||||||||||||||20110213144956|\rOBX|||WT^WEIGHT||102|pounds|\rOBX|||HT^HEIGHT||32|cm|\rZID|3333|112434~Fred^Smith&Mr||232323|life^lane|\rZDS|2323^222&23233|||\rZK1|1|Smith^Mary|Second Cousin|\rZK1|1|Smith^Larry|Another Second Cousin|\r",
-            "Name": "Message 1"
-        }
-    ]
-}
