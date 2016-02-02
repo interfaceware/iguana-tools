@@ -1,5 +1,5 @@
  -- The store module
--- Copyright (c) 2011-2012 iNTERFACEWARE Inc. ALL RIGHTS RESERVED
+-- Copyright (c) 2011-2015 iNTERFACEWARE Inc. ALL RIGHTS RESERVED
 -- iNTERFACEWARE permits you to use, modify, and distribute this file in accordance
 -- with the terms of the iNTERFACEWARE license agreement accompanying the software
 -- in which it is used.
@@ -10,6 +10,7 @@ local store = {}
  
 -- Constants.
 local STORE_NAME = "store.db"
+local IsInitialized = false
 local DROP_TABLE_COMMAND = "DROP TABLE IF EXISTS store"
 local CREATE_TABLE_COMMAND = [[
 CREATE TABLE store
@@ -18,12 +19,29 @@ CKey Text(255) NOT NULL PRIMARY KEY,
 CValue Text(255) 
 )
 ]]
- 
+
+-- INITITALIZE DB: This automatically ensures the SQLlite database exists and has the store table present at script compile time.   
+local function init(conn)
+   local R = conn:query('SELECT * from sqlite_master WHERE type="table" and tbl_name="store"')
+   trace(#R)
+   if #R == 0 then
+      conn:begin()
+      conn:execute{sql=DROP_TABLE_COMMAND, live=true}
+      conn:execute{sql=CREATE_TABLE_COMMAND, live=true}
+      conn:commit()
+   end
+   IsInitialized = true
+end
+
 -- Functions.
  
 -- use to create connection object when needed
 local function connCreate()
-   return db.connect{api=db.SQLITE, name=STORE_NAME}
+   local Connection = db.connect{api=db.SQLITE, name=STORE_NAME}
+   if not IsInitialized then 
+      init(Connection)
+   end
+   return Connection
 end
  
 -- This function returns the state of the store table by performing a general select
@@ -66,21 +84,14 @@ function store.get(Key)
    
    return R[1].CValue:nodeValue()
 end
- 
--- Local Functions
- 
--- INITITALIZE DB: This automatically ensures the SQLlite database exists and has the store table present at script compile time.   
-local function init()
-   local conn = connCreate()
-   local R = conn:query('SELECT * from sqlite_master WHERE type="table" and tbl_name="store"')
-   conn:close()
-   
-   trace(#R)
-   if #R == 0 then
-      store.resetTableState()
-   end
+
+function store.init(Name)
+   STORE_NAME = Name
 end
-init() -- DO NOT REMOVE: Calls init() (once only) at script compile time to perform the initialization
+
+function store.name()
+   return STORE_NAME
+end
  
 -- help for the functions
  
@@ -156,6 +167,40 @@ if help then
    h.Examples = {[1]=[[<pre>store.get('I am the Key')</pre>]]}
    h.SeeAlso = ''
    help.set{input_function=store.get, help_data=h}
+   
+   ------------------------
+   -- store.init()
+   ------------------------
+   local h = help.example()
+   h.Title = 'store.init'
+   h.Desc = 'Set the name of the SQLite data base to be used for the store.  This must be done before the store is used.'
+   h.Usage = 'store.init(DatabaseName)'
+   h.Parameters = {
+      [1]={['DatabaseName']={['Desc']='Name of the database file <u>string</u>'}}
+   }
+   h.Returns = {}
+   h.ParameterTable = false
+   h.Examples = {[1]=[[<pre>store.init("mystore.db")</pre>]]}
+   h.SeeAlso = ''
+   help.set{input_function=store.init, help_data=h}
+   
+   
+   ------------------------
+   -- store.name()
+   ------------------------
+   local h = help.example()
+   h.Title = 'store.name'
+   h.Desc = 'Get the name of the SQLite database file to be used for the store'
+   h.Usage = 'local DatabaseFileName = store.name()'
+   h.Parameters = {}
+   h.Returns = {[1]={['Desc']='The name of the database file <u>string</u>'}}
+   h.ParameterTable = false
+   h.Examples = {[1]=[[<pre>local DatabaseFileName = store.name()</pre>]]}
+   h.SeeAlso = ''
+   help.set{input_function=store.name, help_data=h}
+   
+   
+   
 end
  
 return store
