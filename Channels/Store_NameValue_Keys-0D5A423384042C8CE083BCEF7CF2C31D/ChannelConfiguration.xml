@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Store_NameValue_Keys-From-003F6DfPoCs1MY"
-      commit_id="5172e70069bf2f69207512f325ce68db5b20d6b6"
-      commit_comment="Store commit"
+      commit_id="3c8b750de96841858244f1f99816113f5f5daa01"
+      commit_comment="Put in help for the new functions."
       poll_time="10000">
    </from_mapper>
    <message_filter
