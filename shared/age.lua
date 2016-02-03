@@ -13,43 +13,54 @@ local function isLeapYr(Year)
    return false
 end
  
+local function pickYear(CalculatedYears, SpecialYears) 
+if SpecialYears ~= 0 then 
+      return SpecialYears 
+   end
+   return CalculatedYears
+end
+
 local function calcYrs(DOB)
    if type(DOB) ~= 'string' then
       DOB = tostring(DOB)
    end
    local _, dob = dateparse.parse(DOB)
-   
+
    local T = os.time()
    local ageSecs = os.difftime(T, os.time{
          year = dob.year, 
          month = dob.month, 
          day = dob.day})
- 
-   local currY = tonumber(os.ts.date('%Y'))
+
+   local Today = os.ts.date('*t')
+   
+   -- special case if today is the person's birthday
+   local RealYrs = 0
+   if dob.day == Today.day and dob.month == Today.month
+      and dob.hour == 0 and dob.min == 0 and dob.sec == 0 then 
+      RealYrs = Today.year - dob.year
+   end
+   
+   local currY = Today.year
    local yrs = 0
    local YRSEC = 365*24*3600
    local LPYRSEC = 366*24*3600
- 
+
    local secs = ageSecs
+   trace(dob.year, currY)
    for i = dob.year, currY do
       if isLeapYr(i) then
          secs = secs - LPYRSEC
          yrs = yrs + 1
          if secs < YRSEC then
-            return yrs, yrs + secs/YRSEC, secs
+            return pickYear(yrs, RealYrs), yrs + secs/YRSEC, secs
          end
       else
          secs = secs - YRSEC
          yrs = yrs + 1
-         if isLeapYr(1 + 1) then
-            if secs < LPYRSEC then
-               return yrs, secs/LPYRSEC, secs
-            end
-            else
-            if secs < YRSEC then             
-               return yrs, yrs + secs/YRSEC, secs          
-            end          
-         end       
+         if secs < YRSEC then             
+            return pickYear(yrs, RealYrs), yrs + secs/YRSEC, secs          
+         end
       end    
    end 
 end 

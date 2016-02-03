@@ -18,7 +18,17 @@ function main(Data)
    local AgeYr, AgeMth, AgeDec = age.getAge(Msg.PID[7][1])
    trace(AgeYr, AgeMth, AgeDec)
    
-   -- age.lua uses dateparse to supports non-conformant date formats
+   -- age.lua uses dateparse to support non-conformant date formats
    local AgeYr, AgeMth, AgeDec = age.getAge('01/10/1948')
    trace(AgeYr, AgeMth, AgeDec)
+   
+   -- if today is the birthday and time are not specified, age is
+   -- how old the person turns today.
+   local today = os.date('*t')
+   local dob1 = (today.year - 10) .. '-' .. today.month .. '-' .. today.day
+   local dob2 = (today.year - 1) .. '-' .. today.month .. '-' .. today.day
+
+   AgeYr1 = age.getAge(dob1) -- turning 10 years old today
+   AgeYr2 = age.getAge(dob2) -- turning 1 year old today
+   trace(AgeYr1,AgeYr2)
 end
