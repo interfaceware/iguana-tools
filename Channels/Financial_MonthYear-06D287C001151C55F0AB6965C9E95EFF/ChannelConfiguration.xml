@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Financial_MonthYear-From-JUpsrk2zD7R5od"
-      commit_id="c7aa1b5b27712b2edd67268bc9e78373d3913f66"
-      commit_comment="Handy channel to get the financial year."
+      commit_id="c259853542e943f4531eadbc77cc2603f98c652b"
+      commit_comment="Added order of month to report."
       poll_time="10000">
    </from_mapper>
    <message_filter

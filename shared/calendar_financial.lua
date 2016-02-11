@@ -15,15 +15,18 @@ function calendar_financial.convert(T)
    if Quarter < 0 then Quarter = Quarter + 12 end
          
    trace(Quarter)
+   local Month = (Quarter % 3) + 1
+   trace(Month)
    Quarter=math.floor(Quarter / 3)+1
    trace(Quarter)
    
+   
    Quarter = "Q"..Quarter
-   return Year, Quarter, MonthLookup[TT.month]
+   return Year, Quarter, MonthLookup[TT.month], Month
 end
 
 local ConvertHelp=[[{
-   "Returns": [{"Desc": "Financial year (Integer)"}, { "Desc" : "Financial Quarter (string)"}, {"Desc" : "Month (string)"}],
+   "Returns": [{"Desc": "Financial year (Integer)"}, { "Desc" : "Financial Quarter (string)"}, {"Desc" : "Month (string)"}, {"Desc" : "Order of month in quarter (integer)"}],
    "Title": "config.load",
    "Parameters": [
       { "time": {"Desc": "Time in seconds since 1970 in UTC time."}},
