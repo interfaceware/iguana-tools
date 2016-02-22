@@ -1,0 +1,14 @@
+{
+    "LocalDependencies": [],
+    "LuaDependencies": [
+        "date.julian",
+        "dateparse"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1456178342",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
