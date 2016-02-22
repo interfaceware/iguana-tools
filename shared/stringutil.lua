@@ -224,8 +224,8 @@ function MakeNodeAlias(Name)
    local Func = string[Name]
    trace(Func)
    node[Name] = 
-      function (self) 
-         return Func(self:S()) 
+      function (self,A,B,C) 
+         return Func(self:S(),A,B,C) 
       end
    local HelpData = help.get(Func)
    if HelpData then
@@ -249,8 +249,3 @@ MakeNodeAlias('lower')
 MakeNodeAlias('sub')
 MakeNodeAlias('reverse')
 MakeNodeAlias('rxmatch')
-
-
-
-
-
