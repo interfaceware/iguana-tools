@@ -1,0 +1,13 @@
+{
+    "LocalDependencies": [],
+    "LuaDependencies": [
+        "string.formatText"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1456261502",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}

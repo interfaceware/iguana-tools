@@ -1,0 +1,14 @@
+<channel
+   name="Reformat Report"
+   guid="5F0EF771A1BDB54482D778EDF229B007"
+   description=""
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_mapper
+      guid="Reformat_Report-To-fG8bMCBCqMELNK"
+      commit_id="f6069a469abc6deee3fa64a9394ea9f26b1b8460"
+      commit_comment="Re worked it a little.">
+   </to_mapper>
+   <from_channel/>
+</channel>
