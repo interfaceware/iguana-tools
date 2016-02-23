@@ -7,8 +7,8 @@
    use_message_filter="false">
    <to_mapper
       guid="Retry_periodic_failure-To-HbR3VD3WspT9JP"
-      commit_id="6dc20dac9130d0a1ee062e013f488fa163edaaa8"
-      commit_comment="Completed comment.">
+      commit_id="cfd7d79e73e9c113f831882a0909be3e36bfabcf"
+      commit_comment="Import Translators: tools.">
       <dequeue_list>
          <dequeue
             source_guid="00000000000000000000000000000000"
@@ -17,8 +17,8 @@
    </to_mapper>
    <from_mapper
       guid="Retry_periodic_failure-From-WRe23qm5GJ2cDc"
-      commit_id="7e545d83bee58cb6565eb64259849723e6d173cc"
-      commit_comment="Fix merge conflict."
+      commit_id="90be845247e70a82f9b293c62201d158fc6eae59"
+      commit_comment="Switched away from using example/demo.vmd."
       poll_time="100000">
    </from_mapper>
 </channel>

@@ -151,7 +151,7 @@ function ran.addHeight(Out)
 end
 
 function ran.RandomMessage()
-   local Out = hl7.message{vmd='example/demo.vmd', name='ADT'} 
+   local Out = hl7.message{vmd='random/generator.vmd', name='ADT'} 
    ran.scrubMSH(Out.MSH)
    ran.scrubEVN(Out.EVN)
    ran.scrubPID(Out.PID)
