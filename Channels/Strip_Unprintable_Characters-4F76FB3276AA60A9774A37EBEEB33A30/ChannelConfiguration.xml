@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Striping_Non_ASCII_Characters-From-yo5nC9mA7QZdYs"
-      commit_id="c46d7fc229ca5daf7903454db47f9e4fbef02efc"
-      commit_comment="Made an efficient binary stripping routine."
+      commit_id="9106a85e807206106c041372cc9babd5b4496e3a"
+      commit_comment="Commit of bin strip module."
       poll_time="10000">
    </from_mapper>
 </channel>
