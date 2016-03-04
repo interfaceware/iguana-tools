@@ -2,6 +2,9 @@ require 'stringutil'
 -- This module extends the built in string library with a few useful extra functions
 -- http://help.interfaceware.com/code/details/stringutil-lua
 
+-- The module allows one to call string methods directly on XML, HL7 etc. node trees
+-- without the need to convert them into strings first.
+
 local Input=[[
 <patient firstName="JIM" lastName="bloggs   " title  = " MR " description=''/>
 ]]
@@ -30,5 +33,5 @@ function main()
    X.patient.lastName:S()
    X.patient.description:S()
   
-   
+   X.patient.description:sub(1,10)
 end

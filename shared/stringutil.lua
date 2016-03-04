@@ -224,14 +224,67 @@ function MakeNodeAlias(Name)
    local Func = string[Name]
    trace(Func)
    node[Name] = 
-      function (self,A,B,C) 
-         return Func(self:S(),A,B,C) 
+      function (self) 
+         return Func(self:S())
       end
    local HelpData = help.get(Func)
    if HelpData then
       help.set{input_function=node[Name], help_data=help.get(Func)}
    end
 end
+
+function MakeNodeAlias1(Name)
+   local Func = string[Name]
+   trace(Func)
+   node[Name] = 
+      function (self,A) 
+         return Func(self:S(),A)
+      end
+   local HelpData = help.get(Func)
+   if HelpData then
+      help.set{input_function=node[Name], help_data=help.get(Func)}
+   end
+end
+
+function MakeNodeAlias2(Name)
+   local Func = string[Name]
+   trace(Func)
+   node[Name] = 
+      function (self,A,B) 
+         return Func(self:S(),A,B)
+      end
+   local HelpData = help.get(Func)
+   if HelpData then
+      help.set{input_function=node[Name], help_data=help.get(Func)}
+   end
+end
+
+function MakeNodeAlias3(Name)
+   local Func = string[Name]
+   trace(Func)
+   node[Name] = 
+      function (self,A,B,C) 
+         return Func(self:S(),A,B,C)
+      end
+   local HelpData = help.get(Func)
+   if HelpData then
+      help.set{input_function=node[Name], help_data=help.get(Func)}
+   end
+end
+
+function MakeNodeAlias4(Name)
+   local Func = string[Name]
+   trace(Func)
+   node[Name] = 
+      function (self,A,B,C,D) 
+         return Func(self:S(),A,B,C,D)
+      end
+   local HelpData = help.get(Func)
+   if HelpData then
+      help.set{input_function=node[Name], help_data=help.get(Func)}
+   end
+end
+
 
 -- We make node tree aliases of some of the more useful string functions
 -- This means we don't need to cast to a string using :S() or tostring() before we use the function.
@@ -241,11 +294,14 @@ MakeNodeAlias('trimRWS')
 MakeNodeAlias('trimLWS')
 MakeNodeAlias('compactWS')
 MakeNodeAlias('capitalize')
-MakeNodeAlias('split')
-MakeNodeAlias('rxsub')
-MakeNodeAlias('upper')
-MakeNodeAlias('gsub')
 MakeNodeAlias('lower')
-MakeNodeAlias('sub')
 MakeNodeAlias('reverse')
-MakeNodeAlias('rxmatch')
+MakeNodeAlias('upper')
+MakeNodeAlias1('split')
+
+MakeNodeAlias2('sub')
+MakeNodeAlias2('rxmatch')
+
+MakeNodeAlias3('gsub')
+
+MakeNodeAlias4('rxsub')
