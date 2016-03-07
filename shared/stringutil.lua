@@ -285,7 +285,6 @@ function MakeNodeAlias4(Name)
    end
 end
 
-
 -- We make node tree aliases of some of the more useful string functions
 -- This means we don't need to cast to a string using :S() or tostring() before we use the function.
 
@@ -298,10 +297,12 @@ MakeNodeAlias('lower')
 MakeNodeAlias('reverse')
 MakeNodeAlias('upper')
 MakeNodeAlias1('split')
+MakeNodeAlias1('gfind')
 
 MakeNodeAlias2('sub')
 MakeNodeAlias2('rxmatch')
 
 MakeNodeAlias3('gsub')
+MakeNodeAlias3('find')
 
 MakeNodeAlias4('rxsub')
