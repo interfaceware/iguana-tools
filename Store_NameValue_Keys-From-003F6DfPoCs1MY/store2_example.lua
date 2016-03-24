@@ -23,6 +23,12 @@ function ShowStore2()
    LocalChannelStore:get("life")
    MyStore:get("life")
    
+   -- We can also put binary data into stores
+   local BinData = 'Binary data\000Man\000'
+   LocalChannelStore:put("Binary", BinData)
+   local RetrievedBinData = LocalChannelStore:get("Binary")
+   assert(BinData == RetrievedBinData)
+   
    -- We can reset stores which clears them
    trace(#MyStore:info())
    MyStore:reset()

@@ -14,7 +14,7 @@ local DROP_TABLE_COMMAND = "DROP TABLE IF EXISTS store"
 local CREATE_TABLE_COMMAND = [[
 CREATE TABLE store(
 CKey Text(255) NOT NULL PRIMARY KEY,
-CValue Text(255) 
+CValue Blob 
 )]]
 
 local method = {}
@@ -76,13 +76,14 @@ end
    
 function method:put(Key, Value)
    local conn = GetConnection(self.name)
-   local R = conn:query('REPLACE INTO store(CKey, CValue) VALUES(' .. conn:quote(tostring(Key)) .. ',' .. conn:quote(tostring(Value)) .. ')')
+   
+   local R = conn:query('REPLACE INTO store(CKey, CValue) VALUES(' .. conn:quote(tostring(Key)) .. ",x'" .. filter.hex.enc(tostring(Value)) .. "')")
    conn:close()
 end
  
 function method:get(Key)
    local conn = GetConnection(self.name)
-   local R = conn:query('SELECT CValue from store WHERE CKey = ' .. conn:quote(tostring(Key)))
+   local R = conn:query('SELECT CValue FROM store WHERE CKey = ' .. conn:quote(tostring(Key)))
    conn:close()
    
    if #R == 0 then
