@@ -53,7 +53,48 @@ function method:info()
    conn:close()
    return R
 end
- 
+
+local function BlobFileName(Store, Key)
+   return "blob_"..Store.name..'/'..filter.uri.enc(Key)
+end
+
+local BlobMajikString = ".213djjdejJJdsmsd.d"
+
+local function BlobStoreDir(Store)
+   return "blob_"..Store.name
+end
+
+local function WriteBlob(Store, Key, Value)
+   local StoreDir = BlobStoreDir(Store)
+   if not os.fs.stat(StoreDir) then
+      os.fs.mkdir(StoreDir, 700)
+   end
+   local FileName = BlobFileName(Store, Key)
+   local F = io.open(FileName, "wb")
+   F:write(Value)
+   F:close()
+end
+
+local function ReadBlob(Store, Key)
+   local FileName = BlobFileName(Store,Key)
+   local F = io.open(FileName, "rb")
+   if not F then return nil end
+   local C = F:read("*a")
+   F:close()
+   return C
+end
+
+local function ClearBlobs(Store)
+   local Dir = BlobStoreDir(Store)
+   if not os.fs.stat(Dir) then
+      return
+   end
+   for K,V in os.fs.glob(Dir..'/*') do
+      os.remove(K)
+   end
+   os.fs.rmdir(Dir)
+end
+
 -- This function resets the state of the store table by first deleting it and then recreating it.
 function method:reset()
    -- This operation is performed as a database transaction to prevent another
@@ -65,19 +106,32 @@ function method:reset()
    conn:execute{sql=CREATE_TABLE_COMMAND, live=true}
    conn:commit()
    conn:close()
+   ClearBlobs(self)
 end
 
 -- This function will completely delete the underlying store
+
 function method:delete()
    if os.fs.stat(self.name) then
       os.remove(self.name)
    end
+   ClearBlobs(self)
 end
-   
+
+
 function method:put(Key, Value)
    local conn = GetConnection(self.name)
+   if #Value > 100000 then
+      WriteBlob(self, Key, Value)
+      local R = conn:query('REPLACE INTO store(CKey, CValue) VALUES(' ..
+      conn:quote(tostring(Key)) .. ",'"..BlobMajikString.."')")
+      conn:close()
+      return
+   end
    
-   local R = conn:query('REPLACE INTO store(CKey, CValue) VALUES(' .. conn:quote(tostring(Key)) .. ",x'" .. filter.hex.enc(tostring(Value)) .. "')")
+   
+   local R = conn:query('REPLACE INTO store(CKey, CValue) VALUES(' ..
+      conn:quote(tostring(Key)) .. ",x'" .. filter.hex.enc(tostring(Value)) .. "')")
    conn:close()
 end
  
@@ -88,6 +142,9 @@ function method:get(Key)
    
    if #R == 0 then
       return nil
+   end
+   if R[1].CValue:nodeValue() == BlobMajikString then
+      return ReadBlob(self, Key)
    end
    
    return R[1].CValue:nodeValue()

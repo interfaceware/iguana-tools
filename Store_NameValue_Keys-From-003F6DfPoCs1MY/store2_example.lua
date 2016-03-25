@@ -38,6 +38,14 @@ function ShowStore2()
    -- underlying database file.
    local DbFile = iguana.workingDir()..MyStore.name
    os.fs.stat(DbFile)
+   -- Store2 can also handle *LARGE* values of 20 megs or so
+   local LargeValue = 'Big file etc etc\n'
+   LargeValue = LargeValue:rep(1000000)
+   MyStore:put('Big/Life',LargeValue)
+   local RestoredLargeValue = MyStore:get('Big/Life')
+   assert(LargeValue==RestoredLargeValue)
+   trace(#LargeValue)
+   
    MyStore:delete()
    os.fs.stat(DbFile)
    LocalChannelStore:delete()
