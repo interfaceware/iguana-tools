@@ -121,7 +121,7 @@ end
 
 function method:put(Key, Value)
    local conn = GetConnection(self.name)
-   if #Value > 100000 then
+   if #tostring(Value) > 100000 then
       WriteBlob(self, Key, Value)
       local R = conn:query('REPLACE INTO store(CKey, CValue) VALUES(' ..
       conn:quote(tostring(Key)) .. ",'"..BlobMajikString.."')")

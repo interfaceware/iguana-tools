@@ -29,6 +29,11 @@ function ShowStore2()
    local RetrievedBinData = LocalChannelStore:get("Binary")
    assert(BinData == RetrievedBinData)
    
+   -- We can put numbers in - but they will be returned as strings
+   LocalChannelStore:put("Number", 2323)
+   local Number = LocalChannelStore:get("Number")
+   
+   
    -- We can reset stores which clears them
    trace(#MyStore:info())
    MyStore:reset()
