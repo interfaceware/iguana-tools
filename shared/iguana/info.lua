@@ -19,8 +19,13 @@ function iguana.info()
          V.os = "osx"
          -- Iguana on Mac is 64 bit
          V.cpu = '64bit'
-      elseif K:find("linux") then
+      elseif K:find("centos") or K:find("ubuntu") then
          V.os = "linux"
+         if K:find("x64") then
+            V.cpu = '64bit'
+         else
+            V.cpu = '32bit'   
+         end
       end
    end
    return V
