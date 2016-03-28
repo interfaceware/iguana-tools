@@ -9,9 +9,9 @@
    </to_channel>
    <from_mapper
       guid="Store_NameValue_Keys-From-003F6DfPoCs1MY"
-      commit_id="5bb5399cbc75b6fd99158eb764ad50397e661514"
-      commit_comment="Created new store2 module."
-      poll_time="10000">
+      commit_id="cfac99eb5415be6498cb074c0e14b4043c578d55"
+      commit_comment="Small fix to make sure we can store numbers in store module after my binary improvements."
+      poll_time="100000">
    </from_mapper>
    <message_filter
       filter_after_logging="false"
