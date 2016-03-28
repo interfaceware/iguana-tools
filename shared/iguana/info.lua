@@ -5,16 +5,20 @@ function iguana.info()
    local S = iguana.status()   
    for K in S:gmatch('VersionBuildId="([^"]*)"') do
       trace(K)
-      if K:sub(-2) == '64' then
-         V.cpu = '64bit'
-      else
-         V.cpu = '32bit'
-      end
+      
+      V.cpu = 'unknown'
       V.os = 'unknown'
       if K:find("win") then
          V.os = "windows"
+         if K:sub(-2) == '64' then
+            V.cpu = '64bit'
+         else
+            V.cpu = '32bit'
+         end
       elseif K:sub(1,3) == 'mac' then
          V.os = "osx"
+         -- Iguana on Mac is 64 bit
+         V.cpu = '64bit'
       elseif K:find("linux") then
          V.os = "linux"
       end
