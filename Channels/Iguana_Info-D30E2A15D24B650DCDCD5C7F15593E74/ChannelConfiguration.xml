@@ -1,0 +1,25 @@
+<channel
+   name="Iguana Info"
+   guid="D30E2A15D24B650DCDCD5C7F15593E74"
+   description="This shows the usage of a module which extracts the version numbers, operating system and CPU family (32 vs. 64 bit) information for the current build of Iguana.&#xD;&#xA;&#xD;&#xA;It runs as a web service."
+   start_automatically="true"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_http
+      type="mapper"
+      guid="Iguana_Info-FromHTTP-uB47wBd0vhfWi8"
+      commit_id="19947818c30da6d7a303999ac6cea20b5a6f420f"
+      commit_comment="Put in plain."
+      mapper_url_path="iguana_info/"/>
+   <message_filter
+      filter_after_logging="false"
+      log_pre_post_filter_message="true"
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true">
+   </message_filter>
+</channel>
