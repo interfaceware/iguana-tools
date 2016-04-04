@@ -164,7 +164,7 @@ function mime.send(args)
    trace(msgBody)
 
    -- Send the message via net.smtp.send()
-   net.smtp.send{
+   local Success, Message = pcall(net.smtp.send,{
       server = server,
       to = to,
       from = from,
@@ -176,7 +176,10 @@ function mime.send(args)
       use_ssl = use_ssl,
       live = live,
       debug = debug
-   }
+   })
+   if not Success then
+      error(Message, 2)
+   end
    -- Debug hook
    if debug then
       return msgBody, header

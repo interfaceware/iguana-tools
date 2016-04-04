@@ -6,12 +6,16 @@ mime = require 'mime'
 
 -- http://help.interfaceware.com/code/details/mime-lua
 
--- You will need to edit the parameters below for your own STMP email server to make this work
-local User = '< valid email account user name >'
-local Password = '< password to smtp server >'
-local Server = '< smtp server goes here >'
-local From = 'Joe Bloggs <joe.bloggs@acme.com>'
-local To = '< email address here>'
+-- TO MAKE THIS WORK!
+-- 1) You will need to edit the parameters below for your own STMP email server.
+-- 2) If you want to run this code live in the editor you will need to uncomment the live=true
+--    line to run this code in the editor.  Alternatively you can run the channel and have it send
+--    the example email that way.
+local User = 'EDIT ME - valid email account user name' 
+local Password = 'EDIT ME - password to smtp server' -- i.e. smtp.gmail.com if you use Google Email as your smtp server
+local Server = 'EDIT ME - smtp server goes here'
+local From = 'EDIT ME - Joe Bloggs <joe.bloggs@acme.com>'
+local To = 'EDIT ME - email address here'
 
 function main()   
    local ProjectPath = iguana.project.root()..'/'..iguana.project.guid()..'/'
@@ -36,6 +40,6 @@ function main()
       entity_type='text/html',
       use_ssl = 'try',
       attachments = {LogoPath, TextPath},  -- Filenames to attach
-      --live = true -- uncomment to run in the editor
+      --live=true -- UNCOMMENT THIS LINE to make it run in the editor!
    }
 end
