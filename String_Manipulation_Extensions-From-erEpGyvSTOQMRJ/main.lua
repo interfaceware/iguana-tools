@@ -4,6 +4,10 @@ require 'stringutil'
 
 -- The module allows one to call string methods directly on XML, HL7 etc. node trees
 -- without the need to convert them into strings first.
+ 
+-- From Iguana 6.0.3 onwards much of this functionality has been natively implemented
+-- in the core of Iguana so there is less need for stringutil after this.  This version
+-- of stringutil checks for native implementations of 
 
 local Input=[[
 <patient firstName="JIM" lastName="bloggs   " title  = " MR " description=''/>
@@ -32,6 +36,7 @@ function main()
    X.patient.firstName:S()
    X.patient.lastName:S()
    X.patient.description:S()
-  
+   
    X.patient.description:sub(1,10)
+  
 end
