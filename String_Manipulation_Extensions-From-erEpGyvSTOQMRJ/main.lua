@@ -6,8 +6,10 @@ require 'stringutil'
 -- without the need to convert them into strings first.
  
 -- From Iguana 6.0.3 onwards much of this functionality has been natively implemented
--- in the core of Iguana so there is less need for stringutil after this.  This version
--- of stringutil checks for native implementations of 
+-- into the core of Iguana so there is less need for stringutil after this.  This version
+-- of stringutil checks for native implementations of these functions - if they exist
+-- already it leaves the native implementations in place.  Eventually it should be possible
+-- to get rid of this module.
 
 local Input=[[
 <patient firstName="JIM" lastName="bloggs   " title  = " MR " description=''/>
