@@ -262,7 +262,11 @@ function MakeNodeAlias2(Name)
    trace(Func)
    node[Name] = 
       function (self,A,B) 
-         return Func(self:S(),A,B)
+         if not B then
+            return Func(self:S(),A)
+         else
+            return Func(self:S(),A,B)
+         end
       end
    local HelpData = help.get(Func)
    if HelpData then
@@ -275,7 +279,7 @@ function MakeNodeAlias3(Name)
    local Func = string[Name]
    trace(Func)
    node[Name] = 
-      function (self,A,B,C) 
+      function (self,A,B,C)
          return Func(self:S(),A,B,C)
       end
    local HelpData = help.get(Func)
@@ -320,5 +324,7 @@ function Init()
 
    MakeNodeAlias4('rxsub')
 end
+
+-- rxmatch, find, 
 
 Init()

@@ -40,5 +40,13 @@ function main()
    X.patient.description:S()
    
    X.patient.description:sub(1,10)
-  
+   X.patient.description:sub(5)
+   
+   -- Testing out regular expression matching.
+   local R = ''
+   for K in X.patient.description:rxmatch("\\S*") do
+      trace(K)
+      R = R..K.."\n"
+   end
+   trace(R)
 end
