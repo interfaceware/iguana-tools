@@ -49,4 +49,6 @@ function main()
       R = R..K.."\n"
    end
    trace(R)
+   -- Test rxsub
+   X.patient.description:rxsub('[ ]*', '')
 end

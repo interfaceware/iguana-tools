@@ -294,6 +294,13 @@ local function MakeNodeAlias4(Name)
    trace(Func)
    node[Name] = 
       function (self,A,B,C,D) 
+         if not D then
+             if not C then
+                return Func(self:S(), A, B)
+             else
+                return Func(self:S(), A, B, C)
+             end
+         end
          return Func(self:S(),A,B,C,D)
       end
    local HelpData = help.get(Func)
