@@ -1,6 +1,8 @@
--- http://help.interfaceware.com/code/details/scheduler-lua
 -- This scheduler script can be used to run a script at a given time
-scheduler = require 'scheduler'
+
+-- http://help.interfaceware.com/v6/scheduler-example
+
+local scheduler = require 'scheduler'
  
 -- Within the editor we run the function all the time.
 local function DoBatchProcess(Data)
