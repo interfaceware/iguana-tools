@@ -1,6 +1,7 @@
-dup = require 'dup'
 -- This shows the usage of the duplicate filter
--- http://help.interfaceware.com/code/details/dup-lua
+-- See http://help.interfaceware.com/v6/duplicate-filter
+
+local dup = require 'dup'
 
 function main(Data)
    iguana.logInfo("Duplicate filter received message!")

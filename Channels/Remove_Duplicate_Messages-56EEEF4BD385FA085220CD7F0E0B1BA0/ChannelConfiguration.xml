@@ -1,7 +1,7 @@
 <channel
    name="Remove Duplicate Messages"
    guid="56EEEF4BD385FA085220CD7F0E0B1BA0"
-   description="This example filter will remove duplicate messages. It maintains a history of messages seen before and compares to current messages:&#xD;&#xA;&#xD;&#xA;See http://help.interfaceware.com/code/details/dup-lua&#xD;&#xA;&#xD;&#xA;"
+   description="This example filter will remove duplicate messages. It maintains a history of messages seen before and compares to current messages:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/duplicate-filter&#xD;&#xA;&#xD;&#xA;"
    start_automatically="false"
    logging_level="1"
    use_message_filter="true">
@@ -26,8 +26,8 @@
       connection_lost_reconnect_interval="10000">
       <dequeue_list>
          <dequeue
-            source_guid="00000000000000000000000000000000"
-            dequeue_guid="06B207B793AB2C70F8F6E498B9F7DE5B"/>
+            source_name="self"
+            dequeue_guid="5A3DA638E32442ACEE22A14932E53E42"/>
       </dequeue_list>
    </to_llp_client>
    <from_llp_listener
@@ -45,7 +45,7 @@
       error_handling="0"
       use_translator_filter="true"
       translator_guid="Remove_Duplicate_Messages-Filter-rS0aDvqsezmqca"
-      translator_commit_id="2669bb766249996ca1a1f90564bdfa2a965cf8e9"
-      translator_commit_comment="Import Translators: Julian repo">
+      translator_commit_id="09656f6dad3fe73bf3b16f7932351af2a01a3027"
+      translator_commit_comment="Updated doc link.">
    </message_filter>
 </channel>
