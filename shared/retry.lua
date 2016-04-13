@@ -1,11 +1,10 @@
-
 -- The retry module
 -- Copyright (c) 2011-2014 iNTERFACEWARE Inc. ALL RIGHTS RESERVED
 -- iNTERFACEWARE permits you to use, modify, and distribute this file in accordance
 -- with the terms of the iNTERFACEWARE license agreement accompanying the software
 -- in which it is used.
 --
--- See http://help.interfaceware.com/code/details/retry-lua
+-- See http://help.interfaceware.com/v6/retry-example
  
 -- customize the (generic) error messages used by retry() if desired
 local RETRIES_FAILED_MESSAGE = 'Retries completed - was unable to recover from connection error.'

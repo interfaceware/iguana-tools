@@ -7,8 +7,8 @@
    use_message_filter="false">
    <to_mapper
       guid="Retry_periodic_failure-To-HbR3VD3WspT9JP"
-      commit_id="8fd20d99dadb47ee5096c54b24994b454df7d59c"
-      commit_comment="Corrected links.">
+      commit_id="8f945d3588aded94bb992604457c284217e79d02"
+      commit_comment="Import Translators: Import all tool channels.">
       <dequeue_list>
          <dequeue
             source_name="self"
@@ -17,8 +17,8 @@
    </to_mapper>
    <from_mapper
       guid="Retry_periodic_failure-From-WRe23qm5GJ2cDc"
-      commit_id="12fca421aecee9f4219da76e624cd32713b41c5f"
-      commit_comment="Added comment."
+      commit_id="8f945d3588aded94bb992604457c284217e79d02"
+      commit_comment="Import Translators: Import all tool channels."
       poll_time="100000">
    </from_mapper>
 </channel>
