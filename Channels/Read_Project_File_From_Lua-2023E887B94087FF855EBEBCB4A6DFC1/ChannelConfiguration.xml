@@ -1,0 +1,16 @@
+<channel
+   name="Read Project File From Lua"
+   guid="2023E887B94087FF855EBEBCB4A6DFC1"
+   description="This example shows how one can programmatically read files that are in a translator&apos;s own project into a Lua string.&#xD;&#xA;&#xD;&#xA;This can be helpful for a number of applications.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/read-project-file-from-lua"
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="Read_Project_File_From_Lua-From-J9OEU2ii6lDjlu"
+      commit_id="7c35f4db72fb902321c627a33e83f45ba6b4f54a"
+      commit_comment="Missing local declaration."
+      poll_time="1000000">
+   </from_mapper>
+</channel>
