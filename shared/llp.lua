@@ -192,5 +192,66 @@ function llp.connect(args)
          }, __llp.simulation_meta)
    end
 end
+
+local llp_connect = {
+   Title="llp.connect";
+   Usage="llp.connect{host, port [, timeout]}",
+   SummaryLine="Opens a new LLP connection",
+   Desc=[[Opens an LLP connection (socket) using the specified host name and port 
+   number.
+   <p>An LLP socket connection is returned as a table. This table contains four fields:
+   A boolean "connected" flag, and three functions send(), recv(), and close(). Use 
+   send() to send messages, recv() to receive returned ACK messages, and close() to 
+   close the connection.
+   <p><b>Note</b>: It is best practice to close the connection everytime so you don't
+   overload the remote LLP host (many hosts will refuse multiple connections anyway).
+   <p>For more information about  send(), recv(), and close(), see the
+   <a href="http://help.interfaceware.com/api/#net_tcp">net.tcp functions</a>
+   of the same name in the API Reference (LLP connections are actually just sockets 
+   that use those net.tcp functions).
+   ]];
+   ["Returns"] = {
+      {Desc="LLP connection (socket) <u>table</u>."},
+   };
+   ParameterTable= true,
+   Parameters= {
+      {host= {Desc='LLP host name <u>string</u>.'}},
+      {port= {Desc='Port number <u>integer</u>.'}},
+      {timeout= {Desc='Timeout value in seconds <u>integer</u>.', Opt = true}},
+   };
+   Examples={
+      [[   -- connect to LLP host
+   local s = llp.connect{host='localhost',port=7013}
+      
+   -- send HL7 message
+   s:send(Data)   
+      
+   -- receive ACK return
+   local Ack = s:recv()
+   trace(Ack)   
+
+   -- best practise to close the connection 
+   -- many hosts will reject multiple connections
+   s:close()
+   ]],
+   };
+   SeeAlso={
+      {
+         Title="stringutil.lua - in our code repository.",
+         Link="http://help.interfaceware.com/code/details/stringutil-lua"
+      },
+      {
+         Title=" LLP Client – custom .",
+         Link="http://help.interfaceware.com/v6/llp-client-custom"
+      },
+      {
+         Title="Stringutil – string functions",
+         Link="http://help.interfaceware.com/v6/stringutil-string-functions"
+      }
+   }
+}
+
+help.set{input_function=llp.connect, help_data=llp_connect}
+
  
 return llp

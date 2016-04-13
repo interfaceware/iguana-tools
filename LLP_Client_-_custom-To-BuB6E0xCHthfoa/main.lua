@@ -1,5 +1,6 @@
 -- The LLP client allows one to make LLP connections from the translator in Lua
--- See http://help.interfaceware.com/code/details/llp-lua
+
+-- http://help.interfaceware.com/v6/llp-client-custom
 
 local llp = require 'llp'
 
