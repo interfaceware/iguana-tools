@@ -1,7 +1,9 @@
-codemap = require 'codemap'
 -- The codemap module is a helpful example showing how 
 -- easy it is to map common fields from one value to another.
--- http://help.interfaceware.com/code/details/codemap-lua
+
+-- http://help.interfaceware.com/v6/codemap-example
+
+codemap = require 'codemap'
 
 function main()
    MapCodes()
