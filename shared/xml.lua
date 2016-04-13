@@ -2,20 +2,17 @@
 -- http://help.interfaceware.com/code/details/xml-lua
 -- Helpful extensions to core xml library in Iguana.
 
--- find or create first text element
-function node.text(X)
-   for i=1,#X do
-      if X[i]:nodeType() == 'text' then
-         return X[i]
-      end
-   end
-   return X:append(xml.TEXT, '')
-end
+-- Prior to the nodeText method we used to have a text() helper method
+-- This is gone now.
 
 -- set or create+set a text element
--- NOTE: uses node.text() to create element if needed
 function node.setText(X, T)
-   X:text():setInner(T)
+    for i=1,#X do
+      if X[i]:nodeType() == 'text' then
+         X[i]:setInner(T)
+      end
+   end
+	return X:append(xml.TEXT, T)
 end
 
 -- set or create+set an XML attribute

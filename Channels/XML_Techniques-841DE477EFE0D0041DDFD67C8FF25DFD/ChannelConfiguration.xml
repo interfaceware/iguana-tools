@@ -1,0 +1,14 @@
+<channel
+   name="XML Techniques"
+   guid="841DE477EFE0D0041DDFD67C8FF25DFD"
+   description="This shows usage of a helper XML module and a few other techniques which make processing XML easy in the translator:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/xml-channel"
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_mapper
+      guid="XML_Techniques-To-hgtOp7Bk6TU5DW"
+      commit_id="01940bbb1b5c27f8b6dae57149252a8e97e47c43"
+      commit_comment="Updated XML techniques.">
+   </to_mapper>
+   <from_channel/>
+</channel>
