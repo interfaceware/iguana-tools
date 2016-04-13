@@ -1,7 +1,7 @@
 <channel
    name="String Manipulation Extensions"
    guid="A96E055F4C9E860446BF595F8B8B4456"
-   description="This module has some extra string utility functions:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/stringutil-lua&#xD;&#xA;&#xD;&#xA;It also creates a set of equivalent methods that will work directly on HL7, XML, database trees etc.  This means it is not necessary to cast these to strings before applying common string manipulation operations."
+   description="This module has some extra string utility functions:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/stringutil-string-functions&#xD;&#xA;&#xD;&#xA;It also creates a set of equivalent methods that will work directly on HL7, XML, database trees etc.  This means it is not necessary to cast these to strings before applying common string manipulation operations.&#xD;&#xA;&#xD;&#xA;From Iguana 6.0.3 a lot of this functionality got rolled into the core of Iguana."
    start_automatically="true"
    logging_level="1"
    use_message_filter="false">
@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="String_Manipulation_Extensions-From-erEpGyvSTOQMRJ"
-      commit_id="cc765734e592d7e3b62e32b2793f732d6c3c6f14"
-      commit_comment="Extended the stringutils so that it create equivalent methods for node objects."
+      commit_id="8e9db13ee1f065b3ab786f66dd12e8d63300fa26"
+      commit_comment="Better documentation link."
       poll_time="10000">
    </from_mapper>
    <message_filter

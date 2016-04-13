@@ -1,6 +1,6 @@
 require 'stringutil'
 -- This module extends the built in string library with a few useful extra functions
--- http://help.interfaceware.com/code/details/stringutil-lua
+-- http://help.interfaceware.com/v6/stringutil-string-functions
 
 -- The module allows one to call string methods directly on XML, HL7 etc. node trees
 -- without the need to convert them into strings first.
