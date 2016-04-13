@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="String_Manipulation_Extensions-From-erEpGyvSTOQMRJ"
-      commit_id="8e9db13ee1f065b3ab786f66dd12e8d63300fa26"
-      commit_comment="Better documentation link."
+      commit_id="8357ebeae0cc3a06b7657fde16310273d79ce3dd"
+      commit_comment="Import Translators: String manip"
       poll_time="10000">
    </from_mapper>
    <message_filter

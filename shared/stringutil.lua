@@ -13,7 +13,7 @@
 -- directly on node tree objects.  This is helpful if you are running a earlier version of Iguana.
 -- 
 -- From Iguana 6.0.3 we started to roll a lot of these functions into the core of Iguana itself - as
--- a result this version of 
+-- a result this version of stringutils does less than previous versions.
 
 -- Trims white space on both sides.
 if not string.trimWS then
