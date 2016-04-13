@@ -1,8 +1,7 @@
-retry = require 'retry'
-
 -- The retry module is very handy for handling situations where it make
 -- sense to retry failed operations.
--- http://help.interfaceware.com/code/details/retry-lua
+
+-- http://help.interfaceware.com/v6/retry-example
 
 -- Not all errors are equal.
 -- Some errors represent transient environmental conditions - say a database is unavailable
@@ -10,13 +9,16 @@ retry = require 'retry'
 -- the interface and having a system administrator intervene.  The rety module allows one to
 -- deal with all these situations.  I suggest reading:
 --
---   http://help.interfaceware.com/kb/interface-error-handling
+-- http://help.interfaceware.com/v6/thinking-through-interface-error-handling
+
+local retry = require 'retry'
 
 math.randomseed(os.ts.time() % 1000)
 
 function main(Data)
    iguana.stopOnError(true)
-   retry.call{func=UnreliableFunc,retry=20, pause=1, arg1=Data, funcname='UnreliableFunc', errorfunc=ErrorFunction}
+   retry.call{func=UnreliableFunc,retry=20, pause=1, arg1=Data,
+             funcname='UnreliableFunc', errorfunc=ErrorFunction}
 end
 
 -- We simulate intermittent errors - both fatal and non fatal.

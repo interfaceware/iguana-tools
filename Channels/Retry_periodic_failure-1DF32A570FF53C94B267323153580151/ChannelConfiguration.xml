@@ -1,24 +1,24 @@
 <channel
    name="Retry periodic failure"
    guid="1DF32A570FF53C94B267323153580151"
-   description="This retry example channel has a random ADT generator attached to a translator which has an example of calling the retry module.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/retry-lua&#xD;&#xA;&#xD;&#xA;This can be used to recover from periodic errors."
+   description="This retry example channel has a random ADT generator attached to a translator which has an example of calling the retry module.&#xD;&#xA;&#xD;&#xA;This can be used to recover from periodic errors.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/retry-example&#xD;&#xA;"
    start_automatically="false"
    logging_level="1"
    use_message_filter="false">
    <to_mapper
       guid="Retry_periodic_failure-To-HbR3VD3WspT9JP"
-      commit_id="cfd7d79e73e9c113f831882a0909be3e36bfabcf"
-      commit_comment="Import Translators: tools.">
+      commit_id="8fd20d99dadb47ee5096c54b24994b454df7d59c"
+      commit_comment="Corrected links.">
       <dequeue_list>
          <dequeue
-            source_guid="00000000000000000000000000000000"
-            dequeue_guid="0955CC8425DBBBFE25D37800803C42D3"/>
+            source_name="self"
+            dequeue_guid="6C352E71F3C3B8BF4EBC160D34B3C781"/>
       </dequeue_list>
    </to_mapper>
    <from_mapper
       guid="Retry_periodic_failure-From-WRe23qm5GJ2cDc"
-      commit_id="90be845247e70a82f9b293c62201d158fc6eae59"
-      commit_comment="Switched away from using example/demo.vmd."
+      commit_id="12fca421aecee9f4219da76e624cd32713b41c5f"
+      commit_comment="Added comment."
       poll_time="100000">
    </from_mapper>
 </channel>

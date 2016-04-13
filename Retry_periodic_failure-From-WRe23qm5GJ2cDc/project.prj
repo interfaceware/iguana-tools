@@ -4,9 +4,10 @@
         "ran"
     ],
     "OtherDependencies": [
+        "example/demo.vmd",
         "random/generator.vmd"
     ],
-    "timestamp": "1456243965",
+    "timestamp": "1460551016",
     "version_info": {
         "build": 0,
         "major": 6,

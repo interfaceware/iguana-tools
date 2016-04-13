@@ -1,4 +1,16 @@
-ran = {}
+local ran = {}
+
+local function rand(In, Max, Size)
+   local Result = tostring((In + math.random(Max)) % Max)
+   if '0' == Result then
+      Result = '1'
+   end
+   
+   while Size > Result:len() do
+      Result = '0'..Result
+   end
+   return Result
+end
 
 function ran.scrubMSH(MSH)
    MSH[3][1] = ran.choose(ran.Application)
@@ -162,17 +174,4 @@ function ran.RandomMessage()
    return Out:S()   
 end
 
-function rand(In, Max, Size)
-   
-   local Result = tostring((In + math.random(Max)) % Max)
-   if '0' == Result then
-      Result = '1'
-   end
-   
-   while Size > Result:len() do
-      Result = '0'..Result
-   end
-   
-   return Result
-end
-
+return ran
