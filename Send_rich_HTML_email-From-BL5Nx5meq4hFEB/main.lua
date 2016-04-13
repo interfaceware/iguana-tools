@@ -4,7 +4,7 @@ mime = require 'mime'
 -- Email clients are notorious for their inconsistent support for web standards so your end experience
 -- may vary a lot depending on your email client.
 
--- http://help.interfaceware.com/code/details/mime-lua
+-- See http://help.interfaceware.com/v6/mime-email-client
 
 -- TO MAKE THIS WORK!
 -- 1) You will need to edit the parameters below for your own STMP email server.

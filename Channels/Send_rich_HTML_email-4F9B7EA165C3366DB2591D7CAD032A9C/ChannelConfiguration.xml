@@ -1,7 +1,7 @@
 <channel
    name="Send rich HTML email"
    guid="4F9B7EA165C3366DB2591D7CAD032A9C"
-   description="Send a rich HTML formatted email.&#xD;&#xA;&#xD;&#xA;See: http://help.interfaceware.com/code/details/mime-lua&#xD;&#xA;&#xD;&#xA;This makes use of MIME encoded email attachments. If you wished to automated send a report with an attachment this could show you how."
+   description="Send a rich HTML formatted email.&#xD;&#xA;&#xD;&#xA;See: http://help.interfaceware.com/v6/mime-email-client&#xD;&#xA;&#xD;&#xA;This makes use of MIME encoded email attachments. If you wished to automated send a report with an attachment this could show you how."
    start_automatically="false"
    logging_level="1"
    use_message_filter="false">
@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Send_rich_HTML_email-From-BL5Nx5meq4hFEB"
-      commit_id="0a510f0ade32d1b42b2f7cc9a9972d550e0c8fce"
-      commit_comment="First commit"
+      commit_id="9b53f93fe46114991aadc5ecbf0ab422e71293fa"
+      commit_comment="Added link"
       poll_time="10000">
    </from_mapper>
 </channel>
