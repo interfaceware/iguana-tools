@@ -5,7 +5,8 @@
 -- in which it is used.
 --
 -- This new version of the store module involves constructing a store with the name of the store table.
-
+--
+-- See http://help.interfaceware.com/v6/store-example
 
 local store = {}
  

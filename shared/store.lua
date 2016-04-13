@@ -1,10 +1,12 @@
- -- The store module
+-- The store module
 -- Copyright (c) 2011-2015 iNTERFACEWARE Inc. ALL RIGHTS RESERVED
 -- iNTERFACEWARE permits you to use, modify, and distribute this file in accordance
 -- with the terms of the iNTERFACEWARE license agreement accompanying the software
 -- in which it is used.
 --
--- http://help.interfaceware.com/code/details/store-lua
+-- http://help.interfaceware.com/v6/store-example
+-- 
+-- This is deprecated in favour of the store2 module
  
 local store = {}
  

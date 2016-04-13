@@ -1,7 +1,7 @@
 <channel
    name="Store Name=Value Keys"
    guid="0D5A423384042C8CE083BCEF7CF2C31D"
-   description="This is an example of using the very useful store module:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/code/details/store-lua&#xD;&#xA;&#xD;&#xA;This stores data persistently in a local SQLlite database."
+   description="This is an example of using the very useful store module:&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/store-example&#xD;&#xA;&#xD;&#xA;This stores data persistently in a local SQLlite database."
    start_automatically="true"
    logging_level="1"
    use_message_filter="false">
@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Store_NameValue_Keys-From-003F6DfPoCs1MY"
-      commit_id="cfac99eb5415be6498cb074c0e14b4043c578d55"
-      commit_comment="Small fix to make sure we can store numbers in store module after my binary improvements."
+      commit_id="d47a23f8ebff9c661215f4a89dc8b5c8f7dc73ed"
+      commit_comment="Updated the documentation links."
       poll_time="100000">
    </from_mapper>
    <message_filter

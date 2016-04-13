@@ -1,4 +1,4 @@
--- http://help.interfaceware.com/code/details/store-lua
+-- See http://help.interfaceware.com/v6/store-example
 -- The store.lua module contains a simple interface to store key/value pairs in a persistent storage
 -- mechanism.  Simply put, if you want to store and/or retrieve information across interfaces cross-message;
 -- this is a useful module to do it.
