@@ -33,6 +33,9 @@ function ShowStore2()
    LocalChannelStore:put("Number", 2323)
    local Number = LocalChannelStore:get("Number")
    
+   -- To delete keys please use put with nil
+   LocalChannelStore:put("Number", nil)
+   LocalChannelStore:get("Number")
    
    -- We can reset stores which clears them
    trace(#MyStore:info())
@@ -46,6 +49,9 @@ function ShowStore2()
    -- Store2 can also handle *LARGE* values of 20 megs or so
    local LargeValue = 'Big file etc etc\n'
    LargeValue = LargeValue:rep(1000000)
+   MyStore:put('Big/Life',LargeValue)
+   MyStore:put('Big/Life', nil)
+   MyStore:get('Big/Life')
    MyStore:put('Big/Life',LargeValue)
    local RestoredLargeValue = MyStore:get('Big/Life')
    assert(LargeValue==RestoredLargeValue)

@@ -122,6 +122,16 @@ end
 
 function method:put(Key, Value)
    local conn = GetConnection(self.name)
+   if (not Value) then
+      -- Clearing the value - it's possible there might have been a blob
+      local FileName = BlobFileName(self,Key)
+      os.remove(FileName)
+      local Sql = "DELETE FROM store WHERE CKey = "..conn:quote(tostring(Key))
+      conn:query{sql=Sql}
+      conn:close()
+      return "Cleared key "..Key
+   end
+   
    if #tostring(Value) > 100000 then
       WriteBlob(self, Key, Value)
       local R = conn:query('REPLACE INTO store(CKey, CValue) VALUES(' ..
@@ -212,7 +222,8 @@ if help then
    local h = help.example()
    h.Title = 'store:put(Name, Value)'
    h.Desc = [[Insert a Value for the Key. If the Key exists then replace the value. 
-              If the Key does not exist insert a new Key and Value.]]
+              If the Key does not exist insert a new Key and Value.  Setting the Value equal to nil
+              will result in the Key being deleted from the store.]]
    h.Usage = 'store:put(Key, Value)'
    h.Parameters = {
       [1]={['Key']={['Desc']='Unique Identifier <u>string</u>'}},
