@@ -1,0 +1,13 @@
+{
+    "LocalDependencies": [],
+    "LuaDependencies": [
+        "throttle"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1461012994",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
