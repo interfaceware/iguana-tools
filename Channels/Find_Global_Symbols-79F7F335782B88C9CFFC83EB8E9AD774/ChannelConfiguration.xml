@@ -1,0 +1,16 @@
+<channel
+   name="Find Global Symbols"
+   guid="79F7F335782B88C9CFFC83EB8E9AD774"
+   description="This shows a helpful &apos;lint&apos; like utility to detect global symbols that exist in a given translator project.&#xD;&#xA;&#xD;&#xA;See http://help.interfaceware.com/v6/find-global-symbols&#xD;&#xA;&#xD;&#xA;Best practice is not to define global symbols since it makes larger amounts of code harder to maintain."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_http
+      type="mapper"
+      guid="Find_Global_Symbols-FromHTTP-WP03UEOQ4t4fZv"
+      commit_id="d910e3c247aad4ff87213d06c786046f66bfdfdd"
+      commit_comment="First commit of global checking function."
+      mapper_url_path="globals/"/>
+</channel>
