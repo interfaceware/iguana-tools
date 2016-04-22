@@ -1,0 +1,24 @@
+<channel
+   name="HL7 Custom Z Segment"
+   guid="1DC5BF7DE44413BBE6573092080A7616"
+   description="Example of parsing HL7 custom Z segments without needing to use a vmd file. It is all implemented in Lua.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/z-segment-parser"
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_mapper
+      guid="HL7_-_Custom_Z_Segment-To-4y2BCsfbchWlkk"
+      commit_id="c40def370f9692a986678565e71290e6d20b6666"
+      commit_comment="Improved Z segment example to use a local function for dependencies instead of table.">
+      <dequeue_list>
+         <dequeue
+            source_name="self"
+            dequeue_guid="C3972C1DF0B26FC7373C3D58CC930D9C"/>
+      </dequeue_list>
+   </to_mapper>
+   <from_llp_listener
+      ack_vmd_path="/Applications/iNTERFACEWARE-Iguana.app/Contents/iNTERFACEWARE-Iguana/autoack.vmd"
+      port="7008"
+      connection_timeout="30"
+      unlimited_connection_timeout="false"
+      ack_style="fast"/>
+</channel>

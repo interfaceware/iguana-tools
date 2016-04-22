@@ -1,8 +1,6 @@
 -- Generic Z segment parser
 -- http://help.interfaceware.com/kb/generic-z-segment-parser
 
-hl7.zsegment = {}
-
 local function ParseDelim(Data, DelimArray, Index, Compact)
    if Index == 0 then
       return Data
@@ -36,7 +34,7 @@ local function AddZSegment(List, Segment, Compact)
    List[SegmentName][#List[SegmentName]+1] = Fields
 end
 
-function hl7.zsegment.parse(T)
+local function ParseZSegment(T)
    local Segments = T.data:split("\r")
    local ZSegments = {}
    for i = 1,#Segments do
@@ -92,5 +90,6 @@ local HELP_DEF=[[{
    "ParameterTable": true
 }]]
 
-help.set{input_function=hl7.zsegment.parse, help_data=json.parse{data=HELP_DEF}}   
+help.set{input_function=ParseZSegment, help_data=json.parse{data=HELP_DEF}}   
 
+return ParseZSegment
