@@ -59,7 +59,7 @@ local HELP_DEF=[[{
          "Desc": "A lua table with the Z segments parsed out <u>table</u>."
       }
    ],
-   "SummaryLine": "Parses an HL7/EDI/X12 message for Z-zegments without a vmd.",
+   "SummaryLine": "Parses an HL7 message for Z-zegments without a vmd.",
    "SeeAlso": [
       {
          "Title": "hl7.zsegment.lua.",
@@ -70,8 +70,8 @@ local HELP_DEF=[[{
          "Link": "http://help.interfaceware.com/kb/generic-z-segment-parser"
       }
    ],
-   "Title": "hl7.zsegment.parse",
-   "Usage": "hl7.zsegment.parse{data=&#60;value&#62;, compact=&#60;true|false&#62;}",
+   "Title": "hl7.parseZSegment",
+   "Usage": "hl7.parseZSegment{data=&#60;value&#62;, compact=&#60;true|false&#62;}",
    "Parameters": [
       {
          "data": {
@@ -85,7 +85,8 @@ local HELP_DEF=[[{
       }
    ],
    "Examples": [
-      "<pre>local Msg = hl7.zsegment.parse{data=Data, compact=false}</pre>"
+      "<pre>hl7.parseZSegment = require 'hl7.zsegment.parse'
+local Msg = hl7.parseZSegment{data=Data, compact=false}</pre>"
    ],
    "ParameterTable": true
 }]]
