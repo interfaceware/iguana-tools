@@ -1,0 +1,25 @@
+<channel
+   name="Import Database Schema"
+   guid="9460CE994BE92E791BB5B49DBBC49C0F"
+   description="This channel provides a utility to create a database schema based off a database that you point it at with the right credentials.&#xD;&#xA;&#xD;&#xA;See http://help.interfaceware.com/v6/import-database-schema ‎&#xD;&#xA;&#xD;&#xA;This schema makes it easy to map data into a database using the db:merge{} function and enables these schema to be created with just Iguana without using Chameleon.&#xD;&#xA;&#xD;&#xA;It uses the human readable &quot;DBS&quot; format.&#xD;&#xA;&#xD;&#xA;You will need to edit the channel to point at the credentials of a real database that you have."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_http
+      type="mapper"
+      guid="Import_DBS_Schema-FromHTTP-ZEMQRVKZEToYfn"
+      commit_id="67c322d9895e796ec5d93e45d740355097460d9e"
+      commit_comment="Put in documentation"
+      mapper_url_path="database/schema"/>
+   <message_filter
+      filter_after_logging="false"
+      log_pre_post_filter_message="true"
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true">
+   </message_filter>
+</channel>
