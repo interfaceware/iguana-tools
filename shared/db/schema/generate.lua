@@ -24,7 +24,10 @@ sqlite.map.DOUB = 'double'
 sqlite.map.REAL = 'double'
 
 function sqlite.mapType(ColumnType)
-   ColumnType = ColumnType:sub(1,4)
+   -- We convert to upper case since some SQLite databases
+   -- will have PRAGMA table_info return lower case if the
+   -- table was created with a different case.
+   ColumnType = ColumnType:sub(1,4):upper()
    local DbsType = sqlite.map[ColumnType]
    if not DbsType then
       error('Data type '..ColumnType..' is not known')      
