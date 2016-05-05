@@ -1,11 +1,11 @@
 {
     "LocalDependencies": [],
     "LuaDependencies": [
-        "db.schema.generate",
+        "dbs.api",
         "encrypt.password"
     ],
     "OtherDependencies": [],
-    "timestamp": "1461778753",
+    "timestamp": "1462480579",
     "version_info": {
         "build": 0,
         "major": 6,

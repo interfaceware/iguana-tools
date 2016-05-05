@@ -1,6 +1,11 @@
 -- See http://help.interfaceware.com/v6/import-database-schema
--- This channel shows the use of a module which can query a database and generate
--- a DBS schema file.  DBS schema perform the same role as a vmd based table grammar
+-- This channel shows the use of a module which gives a very convenient
+-- API over the top of the DBS grammar schema.
+--
+-- It allows one to write code which can create a schema on the fly or
+-- query one of number of databases to generate the schema.
+
+-- DBS schema perform the same role as a vmd based table grammar
 -- in allowing one to populate a set of records and use the db:merge{} function.
 -- See http://help.interfaceware.com/api/#dbs_init
 -- As of today the supported databases are:
@@ -11,7 +16,8 @@
 -- It's relatively trivial to add support for other databases - if you need help adding support
 -- for another database type please reach out.
 
-db.generateSchema = require 'db.schema.generate'
+local NewSchema = require 'dbs.api'
+
 local config = require 'encrypt.password'
 local Key = 'sdlfjhslkfdjhslkdfjhskj'
 
@@ -39,10 +45,15 @@ local function GetSchema()
       password=Password,
       name=DbName
    }
-   local Def = db.generateSchema(DB)
+   local Schema = NewSchema()
+   Schema:import{connection=DB}  
+   local Def = Schema:dbs{}
    local D = dbs.init{definition=Def}
    local A = D:tables()
    -- 5) Try examining A
+   
+   -- We can clear the schema
+   Schema:clear{}
    return Def
 end
 
