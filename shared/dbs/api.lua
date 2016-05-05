@@ -391,14 +391,15 @@ end
 
 local Help = {
    Title="schema:dbs",
-   Usage=[[
+   Usage=[[local DbsSchema = Schema:dbs()]],
+   Examples={[[
 -- Generate DBS schema
 local DbsSchema = Schema:dbs()
 -- Initialize DBS instance off the grammar
 local D = dbs.init{definition=Def}
 -- Produce a recordset from the DBS instance
 local Records = D:tables()  
-]],
+]]},
    ParameterTable=true,
    Parameters={
    },
@@ -425,7 +426,6 @@ local Help = {
 }
 help.set{input_function=method.tableList,help_data=Help}
 
-
 local function NewSchema()
    local S = {}
    S.tables = {}
@@ -435,5 +435,3 @@ end
 
 
 return NewSchema
-
-
