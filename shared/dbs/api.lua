@@ -276,8 +276,21 @@ Import[db.MARIA_DB] = Import[db.MY_SQL]
 local tablemethod = {}
 local tablemeta   = {__index=tablemethod}
 
+local LegalType={
+   integer=true,
+   string =true,
+   double=true,
+   datetime=true
+}
+
 function tablemethod.addColumn(S,T)
    local IsKey = T.key or false
+   if not T.type then 
+      error("The type argument is required.", 2)
+   end
+   if not LegalType[T.type] then 
+      error("The column type of "..T.type.." is illegal. It must be integer, string, double or datetime.",2)
+   end
    S.columns[#S.columns+1] = {name = T.name, type=T.type, key=IsKey}
 end
 
@@ -336,6 +349,19 @@ local function TableDef(N, C)
    return R
 end
 
+local function GroupDef(N, C)
+   local R = 'group ['..N..'] ('
+   for i=1, #C do
+      R = R..'['..C[i]..']'
+      if i == #C then
+         R = R..");\n"
+      else
+         R = R..","   
+      end
+   end
+   return R
+end
+
 function method.clear(S, T)
    S.tables = {}
 end
@@ -381,10 +407,31 @@ local Help = {
 
 help.set{input_function=method.import,help_data=Help}
 
+
+function method.addGroup(S, T)
+   S.groups[T.name] = T.table_list
+end
+
+local Help = {
+   Title="table:addGroup",
+   ParameterTable=true,
+   Parameters={
+      {name={Desc="Name of the group to add."}},
+      {table_list={Desc="Table array of tables to contain in the group."}},
+   },
+   Desc="Adds a table group to the schema."
+}
+
+help.set{input_function=method.addGroup, help_data=Help}
+
+
 function method.dbs(S)
    local R = ''
    for N,C in pairs(S.tables) do 
       R = R..TableDef(N, C)
+   end
+   for N,G in pairs(S.groups) do
+      R = R..GroupDef(N,G)
    end
    return R
 end
@@ -429,6 +476,7 @@ help.set{input_function=method.tableList,help_data=Help}
 local function NewSchema()
    local S = {}
    S.tables = {}
+   S.groups = {}
    setmetatable(S, meta)
    return S
 end
