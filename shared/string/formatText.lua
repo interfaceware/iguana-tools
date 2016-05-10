@@ -1,4 +1,4 @@
-function formatText(s, M, RS)
+local function formatText(s, M, RS)
    local function lengthofWord(word)
       if word == '\n' or word == '\r' or word == '\t' then return #word + 1 end
       return #word
