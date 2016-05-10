@@ -16,6 +16,9 @@
 -- a result this version of stringutils does less than previous versions.
 
 -- Trims white space on both sides.
+
+-- http://help.interfaceware.com/v6/stringutil-string-functions
+
 if not string.trimWS then
    string.trimWS = function (self)
       return self:match('^%s*(.-)%s*$')
@@ -44,11 +47,11 @@ if not string.trimWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua - in our code repository.",
-            Link="http://help.interfaceware.com/code/details/stringutil-lua"
+            Title="stringutil.lua on github",
+            Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
-            Title="Stringutil – string functions ",
+            Title="String Manipulation Extensions",
             Link="http://help.interfaceware.com/v6/stringutil-string-functions"
          }
       }
@@ -86,11 +89,11 @@ if not string.trimRWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua - in our code repository.",
-            Link="http://help.interfaceware.com/code/details/stringutil-lua"
+            Title="stringutil.lua on github",
+            Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
-            Title="Stringutil – string functions ",
+            Title="String Manipulation Extensions",
             Link="http://help.interfaceware.com/v6/stringutil-string-functions"
          }
       }
@@ -128,11 +131,11 @@ if not string.trimLWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua - in our code repository.",
-            Link="http://help.interfaceware.com/code/details/stringutil-lua"
+            Title="stringutil.lua on github",
+            Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
-            Title="Stringutil – string functions ",
+            Title="String Manipulation Extensions",
             Link="http://help.interfaceware.com/v6/stringutil-string-functions"
          }
       }
@@ -170,11 +173,11 @@ if not string.compactWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua - in our code repository.",
-            Link="http://help.interfaceware.com/code/details/stringutil-lua"
+            Title="stringutil.lua on github",
+            Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
-            Title="Stringutil – string functions ",
+            Title="String Manipulation Extensions",
             Link="http://help.interfaceware.com/v6/stringutil-string-functions"
          }
       }
@@ -214,11 +217,11 @@ if not string.capitalize then
       };
       SeeAlso={
          {
-            Title="stringutil.lua - in our code repository.",
-            Link="http://help.interfaceware.com/code/details/stringutil-lua"
+            Title="stringutil.lua on github",
+            Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
-            Title="Stringutil – string functions ",
+            Title="String Manipulation Extensions",
             Link="http://help.interfaceware.com/v6/stringutil-string-functions"
          }
       }
