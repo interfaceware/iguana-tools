@@ -1,8 +1,6 @@
-local bin = {}
 
-function bin.strip( str )
+local function BinaryStrip( str )
    return str:gsub("[\128-\255]", "")
-end
- 
+end 
 
-return bin
+return BinaryStrip
