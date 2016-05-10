@@ -2,13 +2,13 @@
    name="Throttle transaction volume"
    guid="F8A5923FE835888AB57F91B16B69EEE4"
    description="This example shows the use of the throttle module to slow down the number of calls during certain times.&#xD;&#xA;&#xD;&#xA;See http://help.interfaceware.com/v6/throttle&#xD;&#xA;"
-   start_automatically="true"
+   start_automatically="false"
    logging_level="1"
    use_message_filter="false">
    <to_mapper
       guid="Throttle_transaction_volume-To-DmkTe7JaeC6YlS"
-      commit_id="086b3d4c0574b587e9d01203af0ab656d66b08c7"
-      commit_comment="First commit">
+      commit_id="6b33c1dac5d88ff43f8cb107a423ca86e6d748be"
+      commit_comment="Import Translators: Imported Julian&apos;s channels.">
    </to_mapper>
    <from_channel/>
 </channel>

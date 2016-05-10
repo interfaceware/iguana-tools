@@ -2,7 +2,7 @@
     "Samples": [
         {
             "Message": "Some sample data.",
-            "Name": ""
+            "Name": "Message 1"
         }
     ]
 }
