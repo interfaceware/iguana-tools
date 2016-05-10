@@ -64,7 +64,7 @@ local Data=[[{
 }
 ]]
 
-local function FindExtraGlobals()
+local function CheckForGlobals()
    if not iguana.isTest() then
       return -- Don't bother to run it in production
    end
@@ -76,4 +76,38 @@ local function FindExtraGlobals()
    end
 end
 
-return FindExtraGlobals
+local Help = {
+   Title="CheckForGlobals",
+   Usage="CheckForGlobals()",
+   ParameterTable=false,
+   Parameters={},
+   Returns={},
+   Examples={[[-- use require and local CheckForGlobals on separate lines
+local CheckForGlobals = require 'tool.global.find'
+main()
+   CheckForGlobals()      
+   -- other code goes here...
+end]],
+   [[-- combine require and the function call on a single line
+require('tool.global.find')()]]},
+   Desc=[[Finds any global symbols created in the code. Raises an error indicating the 
+first global symbol (variable or function) found. To fix the error simply add "local" 
+to start of the line containing the symbol declaration.
+<br><br><b>Note:</b> You will need to repeat the process until no error is raised.
+]],
+   SeeAlso={
+      {
+         Title="Find Global Symbols",
+         Link="http://help.interfaceware.com/v6/find-global-symbols"
+      },
+      {
+         Title="Source code for the tool.global.find.lua module on github",
+         Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/tool/global/find.lua"
+      }
+   },
+}
+
+help.set{input_function=CheckForGlobals, help_data=Help}
+
+
+return CheckForGlobals
