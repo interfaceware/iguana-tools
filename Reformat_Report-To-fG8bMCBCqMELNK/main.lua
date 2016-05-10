@@ -4,7 +4,7 @@
 
 -- It's a good idea to expand out the reports before and after to see them.
 
-require 'string.formatText'
+string.formatText = require 'string.formatText'
 
 function main(Before)
    local FirstReport = Before:split("\r")
