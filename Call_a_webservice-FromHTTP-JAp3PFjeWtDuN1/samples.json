@@ -1,0 +1,8 @@
+{
+    "Samples": [
+        {
+            "Message": "GET /weather/ HTTP/1.1\r\nHost: localhost:6544\r\nConnection: keep-alive\r\nAccept: text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8\r\nUpgrade-Insecure-Requests: 1\r\nUser-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.109 Safari/537.36\r\nReferer: http://localhost:6543/\r\nAccept-Encoding: gzip, deflate, sdch\r\nAccept-Language: en-US,en;q=0.8\r\n\r\n",
+            "Name": "Message 1"
+        }
+    ]
+}
