@@ -1,0 +1,15 @@
+{
+    "LocalDependencies": [
+        "ToJson.lua"
+    ],
+    "LuaDependencies": [
+        "dbs.api"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1462903391",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
