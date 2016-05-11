@@ -202,7 +202,6 @@ if help then
    help.set{input_function=store.name, help_data=h}
    
    
-   
 end
  
 return store

@@ -1,0 +1,17 @@
+{
+    "LocalDependencies": [
+        "store2_example.lua",
+        "store_example.lua"
+    ],
+    "LuaDependencies": [
+        "store",
+        "store2"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1462970347",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
