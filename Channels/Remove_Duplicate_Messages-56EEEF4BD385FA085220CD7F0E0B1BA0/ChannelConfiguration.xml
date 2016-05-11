@@ -45,7 +45,7 @@
       error_handling="0"
       use_translator_filter="true"
       translator_guid="Remove_Duplicate_Messages-Filter-rS0aDvqsezmqca"
-      translator_commit_id="09656f6dad3fe73bf3b16f7932351af2a01a3027"
-      translator_commit_comment="Updated doc link.">
+      translator_commit_id="6a18591320f948952594c1619c3dec073034b11a"
+      translator_commit_comment="Import Translators: Remove dups Julian">
    </message_filter>
 </channel>

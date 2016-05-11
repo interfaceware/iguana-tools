@@ -1,9 +1,9 @@
--- Duplicate module.  When a channel first starts or you edit this script this module will query the history of
--- messages off the channel log.  After that it maintains a linked list of MD5 hashes of messages in memory.  The algorithms
+-- Duplicate module. When a channel first starts or you edit this script this module will query the history of
+-- messages off the channel log. After that it maintains a linked list of MD5 hashes of messages in memory. The algorithms
 -- are intended to be efficient - lookups done using a hashmap and maintaining the list of messages to expire using a linked list.
 -- Since the whole thing operates in memory after startup it should be fast and the use of MD5 hashes rather than storing the raw
 -- messages themselves limits the amount of memory overhead.
--- Read http://help.interfaceware.com/v6/duplicate-filter for more information.
+-- http://help.interfaceware.com/v6/duplicate-filter
 
 local dup = {}
 
@@ -50,7 +50,7 @@ function Queue:peek()
 end
 
 -- Create a new Log Message node
-function createMsgNode(Hash)
+local function createMsgNode(Hash)
    return {hash=Hash, next=nil}
 end
 
@@ -149,12 +149,12 @@ local HELP_DEF=[[{
    "SummaryLine": "Is message a duplicate?",
    "SeeAlso": [
       {
-         "Title": "Duplicate Filter.",
+         "Title": "Remove Duplicate Messages",
          "Link": "http://help.interfaceware.com/v6/duplicate-filter"
       },
       {
-         "Title": "dup.lua.",
-         "Link": "http://help.interfaceware.com/code/details/dup-lua"
+         "Title": "dup.lua module on github",
+         "Link": "https://github.com/interfaceware/iguana-tools/blob/master/shared/dup.lua"
       }
    ],
    "Title": "dup.isDuplicate",
