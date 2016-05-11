@@ -1,5 +1,7 @@
-local scheduler={}
- 
+-- This scheduler module can be used to run a script at a given time
+
+-- http://help.interfaceware.com/v6/scheduler-example
+
 local LastRunTime = 0
 local ScheduledRunTime = 0
 
@@ -65,14 +67,16 @@ local function Init(Time)
    return R
 end
 
-local function trace(M) end
-
-function scheduler.runAt(ScheduledHour, Func, Arg)
+-- the "..." syntax means multiple functions that multiple
+-- (optional) parameters can be passed to the function in 
+-- a table named "arg" - these are passed to the function
+-- by converting them using the "unpack" function
+local function runAt(scheduledHour, func, ...)
    local R
    trace(LastRunTime)
    if LastRunTime == 0 or iguana.isTest() then
       -- We need to do one time initialization
-      R = Init(ScheduledHour)
+      R = Init(scheduledHour)
    end
    trace(ScheduledRunTime)
    local WouldRun = (os.ts.time() > ScheduledRunTime and LastRunTime <= ScheduledRunTime)
@@ -80,16 +84,40 @@ function scheduler.runAt(ScheduledHour, Func, Arg)
 
    if WouldRun then
       iguana.logInfo('Kicking off batch process')
-      Func(Arg)
-      RecordRun(ScheduledHour)
+      func(unpack(arg))
+      RecordRun(scheduledHour)
       return R
    end
    if iguana.isTest() then
-      Func(Arg)
+      func(unpack(arg))
       return R
    end
 
    return R
 end
 
-return scheduler
+local HELP_DEF={
+   SummaryLine = "Run a channel at a scheduled time",
+   Desc =[[Runs a channel once at the specified scheduled time (actually runs
+it the first time that the scheduled time is exceeded)]],
+   Usage = "scheduler.runAt(scheduledHour, ...)",
+   ParameterTable=false,
+   Parameters ={
+      {scheduledHour={Desc='The hour to run the function <u>number</u>.'}}, 
+      {func={Desc='The function to call <u>function</u>.'}}, 
+      {['...']={Desc='One or more arguments to the function <u>any type</u>.', Opt=true}},
+   },
+   Returns ={{Desc='Status message indicating schedule time and when/whether the function was run <u>string</u>.'}},
+   Title = 'scheduler.runAt',  
+   SeeAlso = {{Title='scheduler.lua module on github', Link='https://github.com/interfaceware/iguana-tools/blob/master/Schedule_Channel_Run-From-CLXyvvLL2lpvEB/main.lua'},
+      {Title='Schedule Channel Run', Link='http://help.interfaceware.com/v6/scheduler-example'}},
+   Examples={'scheduler.runAt(11.5, DoBatchProcess")',
+      'scheduler.runAt(11.5, DoBatchProcess, "Some Argument")',
+      [[-- Note: runAt can handle (optional) multiple parameters
+scheduler.runAt(11.5, DoBatchProcess, 'Some Argument', "Second Argument", "etc...")]],
+   }
+}
+ 
+help.set{input_function=runAt,help_data=HELP_DEF}
+
+return runAt
