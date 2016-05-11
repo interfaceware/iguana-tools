@@ -1,4 +1,3 @@
--- See http://help.interfaceware.com/v6/import-database-schema
 -- This channel shows the use of a module which gives a very convenient
 -- API over the top of the DBS grammar schema.
 --
@@ -16,18 +15,22 @@
 -- It's relatively trivial to add support for other databases - if you need help adding support
 -- for another database type please reach out.
 
+-- http://help.interfaceware.com/v6/import-database-schema
+
 local NewSchema = require 'dbs.api'
 
 local config = require 'encrypt.password'
 local Key = 'sdlfjhslkfdjhslkdfjhskj'
 
--- To avoid saving database credentials into the Lua script ahnd having
+-- Follow these steps to store database credentials securely in 4 configuration files
+-- This method is much more secure than saving database credentials in the Lua script
+-- NOTE: (step 4) Be careful not to save a milestone containing password information
 -- See http://help.interfaceware.com/v6/encrypt-password-in-file
---To change the database name, user, password and database API type you'll need to 
--- 1) Enter them into these lines
--- 2) Uncomment the lines.
--- 3) Recomment the lines
--- 4) Remove the password and host from the file before you same a milestone
+-- To change the database name, user, password and database API type you'll need to 
+--  1) Enter them into these lines
+--  2) Uncomment the lines.
+--  3) Recomment the lines
+--  4) Remove the password and host from the file before you same a milestone
 
 --config.save{config='appname',     key=Key, password='Replace with your database name'}
 --config.save{config='apppassword', key=Key, password='Replace with your database password'}
@@ -46,6 +49,7 @@ local function GetSchema()
       name=DbName
    }
    local Schema = NewSchema()
+   trace(Schema)
    Schema:import{connection=DB}  
    local Def = Schema:dbs{}
    local D = dbs.init{definition=Def}
@@ -99,4 +103,3 @@ Error message is:
 #ERROR#
 </pre>
 ]]
-
