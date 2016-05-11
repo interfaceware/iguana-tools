@@ -5,10 +5,11 @@
         "text.txt"
     ],
     "LuaDependencies": [
+        "encrypt.password",
         "mime"
     ],
     "OtherDependencies": [],
-    "timestamp": "1460550731",
+    "timestamp": "1462978691",
     "version_info": {
         "build": 0,
         "major": 6,

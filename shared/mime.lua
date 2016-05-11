@@ -23,6 +23,11 @@
 --    header={['Subject']='Test Subject'}, body='Test Email Body', use_ssl='try',
 --    attachments={'/home/jsmith/pictures/test.jpeg'},
 -- }
+
+-- See the wiki page about the "Send rich HTML email" wiki page
+-- about the example channel in the Builtin: Iguana Tools repo
+-- http://help.interfaceware.com/v6/mime-email-client
+
  
 local mime = {}
  
@@ -215,12 +220,52 @@ local mimehelp = {
          Link="http://help.interfaceware.com/api/#net_smtp_send"
       },
       {
-         Title="Mime email client ",
+         Title="Send rich HTML email",
          Link="http://help.interfaceware.com/v6/mime-email-client"
       }
    }
 }
 
 help.set{input_function=mime.send, help_data=mimehelp}
+
+-- Read the passed in filespec into a local variable.
+function mime.readFile(Filename)
+   local F = assert(io.open(Filename, "rb"))
+   local Data = F:read("*a")
+   F:close()
+   return Data
+end
+
+ 
+local mimehelp = {
+   Title="mime.readFile";
+   Usage="mime.readFile(Filename)",
+   SummaryLine="Read a filespec into a local variable",
+   Desc=[[Read a filespec from the specified file into a local variable
+   ]];
+   ["Returns"] = {
+      {Desc="The filespec read from the file <u>string</u>."},
+   };
+   ParameterTable= false,
+   Parameters= {
+      {Filename= {Desc='Name of the file containing the filespec <u>string</u>.'}},
+   };
+   Examples={
+      [[local ProjectPath = iguana.project.root()..'/'..iguana.project.guid()..'/'
+local Template = mime.readFile(ProjectPath..'template.html')]],
+   };
+   SeeAlso={
+      {
+         Title="Send rich HTML email",
+         Link="http://help.interfaceware.com/v6/mime-email-client"
+      },
+      {
+         Title="Send rich HTML email",
+         Link="http://help.interfaceware.com/v6/mime-email-client"
+      }
+   }
+}
+
+help.set{input_function=mime.readFile, help_data=mimehelp}
  
 return mime

@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Send_rich_HTML_email-From-BL5Nx5meq4hFEB"
-      commit_id="9b53f93fe46114991aadc5ecbf0ab422e71293fa"
-      commit_comment="Added link"
+      commit_id="1eccbafa7c35c7f993416106925c3b154b95962b"
+      commit_comment="Put in password encryption module."
       poll_time="10000">
    </from_mapper>
 </channel>
