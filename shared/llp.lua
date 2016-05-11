@@ -1,5 +1,6 @@
 -- llp module - allows Lua to act as a LLP client
--- See http://help.interfaceware.com/code/details/llp-lua
+
+-- http://help.interfaceware.com/v6/llp-client-custom
 
 -- Here we expose a single function, connect(), that opens
 -- an LLP connection to a remote host, and returns a table
@@ -143,7 +144,7 @@ __llp = {
 }
  
 -- generate a 
-function ackGenerate(Data)
+local function ackGenerate(Data)
    local Msg = hl7.parse{vmd='ack.vmd', data=Data}
    local Ack = hl7.message{vmd='ack.vmd', name='Ack'}
    Ack.MSH[3][1]  = Msg.MSH[5][1]
@@ -165,8 +166,7 @@ end
 -- Public Interface
 --
  
-local llp = {}
-function llp.connect(args)
+local function Connect(args)
    local required, optional = false, true
    __llp.check_arg(args, 'host',    'string',  required)
    __llp.check_arg(args, 'port',    'number',  required)
@@ -206,7 +206,7 @@ local llp_connect = {
    <p><b>Note</b>: It is best practice to close the connection everytime so you don't
    overload the remote LLP host (many hosts will refuse multiple connections anyway).
    <p>For more information about  send(), recv(), and close(), see the
-   <a href="http://help.interfaceware.com/api/#net_tcp">net.tcp functions</a>
+   <a target="_blank" href="http://help.interfaceware.com/api/#net_tcp">net.tcp functions</a>
    of the same name in the API Reference (LLP connections are actually just sockets 
    that use those net.tcp functions).
    ]];
@@ -237,21 +237,21 @@ local llp_connect = {
    };
    SeeAlso={
       {
-         Title="stringutil.lua - in our code repository.",
-         Link="http://help.interfaceware.com/code/details/stringutil-lua"
-      },
-      {
-         Title=" LLP Client – custom .",
+         Title="LLP Custom Client",
          Link="http://help.interfaceware.com/v6/llp-client-custom"
       },
       {
-         Title="Stringutil – string functions",
-         Link="http://help.interfaceware.com/v6/stringutil-string-functions"
+         Title="llp.lua on github",
+         Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/llp.lua"
+      },
+      {
+         Title="net.tcp functions",
+         Link="http://help.interfaceware.com/api/#net_tcp"
       }
    }
 }
 
-help.set{input_function=llp.connect, help_data=llp_connect}
+help.set{input_function=Connect, help_data=llp_connect}
 
  
-return llp
+return Connect

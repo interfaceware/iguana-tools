@@ -1,0 +1,15 @@
+{
+    "LocalDependencies": [
+        "ack.vmd"
+    ],
+    "LuaDependencies": [
+        "llp"
+    ],
+    "OtherDependencies": [],
+    "timestamp": "1462970723",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
