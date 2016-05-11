@@ -7,13 +7,12 @@
 -- See http://help.interfaceware.com/v6/retry-example
  
 -- customize the (generic) error messages used by retry() if desired
+local retry = {}
 local RETRIES_FAILED_MESSAGE = 'Retries completed - was unable to recover from connection error.'
 local FATAL_ERROR_MESSAGE    = 'Stopping channel - fatal error, function returned false. Function name: '
 local RECOVERED_MESSAGE      = 'Recovered from error, connection is now working. Function name: '
  
- 
-local retry={}
- 
+  
 local function sleep(S)
    if not iguana.isTest() then
       util.sleep(S*1000)
@@ -106,7 +105,7 @@ function retry.call(P)--F, A, RetryCount, Delay)
    error(RETRIES_FAILED_MESSAGE..' Function: '..Fname..'(). Stopping channel.\n'..tostring(ErrMsgOrReturnCode)) 
 end
  
-local retryHelp={
+local HELP_DEF={
    SummaryLine = 'Retries a function, using the specified retries and pause time.',
    Desc =[[Retries a function, using the specified number of retries and pause time in seconds.
    <p>
@@ -119,7 +118,7 @@ local retryHelp={
    Any number of functions arguments are supported, in the form: arg1, arg2,... argN.]],        
    Usage = "retry.call{'func'=&lt;value&gt; [, 'arg1, arg2,... argN'=&lt;value&gt;] [, retry=&lt;value&gt;] [, pause=&lt;value&gt;] [, funcname=&lt;value&gt;]} [, errorfunc=&lt;value&gt;]}",
    ParameterTable=true,
-   Parameters ={ {func={Desc='The function to call <u>function</u>'}}, 
+   Parameters ={{func={Desc='The function to call <u>function</u>'}}, 
       {['arg1, arg2,... argN']={Desc='One or more arguments to the function, in the form: arg1, arg2,... argN <u>any type</u>', Opt=true}},
       {retry={Desc='Count of times to retry (default = 100) <u>integer</u>', Opt=true}},
       {pause={Desc='Delay between retries in seconds (default = 10) <u>integer</u>', Opt=true}},
@@ -131,8 +130,9 @@ local retryHelp={
          <p><b>Note</b>: If nothing is returned from the function then the informational message becomes the first (and only) return]]},
    },
    Title = 'retry.call',  
-   SeeAlso = { {Title='Module reference for the retry.lua module', Link='http://help.interfaceware.com/kb/1487'},
-      {Title='Handling retries for unreliable external resources', Link='http://help.interfaceware.com/kb/482'}},
+   SeeAlso = {{Title='retry.lua module on github', Link='https://github.com/interfaceware/iguana-tools/blob/master/Retry_periodic_failure-From-WRe23qm5GJ2cDc/main.lua'},
+      {Title='Retry periodic failure', Link='http://help.interfaceware.com/v6/retry-example'},
+      {Title='Handling retries for unreliable external resources (Iguana 5 wiki)', Link='http://help.interfaceware.com/kb/482'}},
    Examples={'local R, M = retry.call{func=DoInsert, retry=1000, pause=10}',
       [[local R, M = retry.call{func=Hello, arg1={'Hello', 'World',}, retry=99, pause=3, funcname='Hello'}]],
       [[local R, M = retry.call{func=Hello, arg1='Hello', arg2='World', retry=99, pause=3,funcname='Hello'}
@@ -143,6 +143,6 @@ local retryHelp={
    }
 }
  
-help.set{input_function=retry.call,help_data=retryHelp}
+help.set{input_function=retry.call,help_data=HELP_DEF}
  
 return retry

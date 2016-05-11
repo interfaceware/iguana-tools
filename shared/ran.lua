@@ -1,4 +1,16 @@
-local ran = {}
+-- seed data used for generation
+local data = {}
+data.Sex = {'M', 'F'}
+data.LastNames = {'Muir','Smith','Adams','Garland', 'Meade', 'Fitzgerald', 'WHITE'}
+data.MaleNames = {'Fred','Jim','Gary','John'}
+data.FemaleNames = {'Mary','Sabrina','Tracy'}
+data.Race = {'AI', 'EU', 'Mixed', 'Martian', 'Unknown'}
+data.Street = {'Delphi Cres.', 'Miller Lane', 'Yonge St.', 'Main Rd.'}
+data.Relation = {'Grandchild', 'Second Cousin', 'Sibling', 'Parent'}
+data.Event = {'A01', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08'}
+data.Facility = {'Lab', 'E&R'}
+data.Application = { 'AcmeMed', 'MedPoke', 'CowZing' }
+data.Locations = { {'Chicago', 'IL'}, {'Toronto', 'ON'}, {'ST. LOUIS', 'MO'}, {'LA', 'CA'} }
 
 local function rand(In, Max, Size)
    local Result = tostring((In + math.random(Max)) % Max)
@@ -12,109 +24,11 @@ local function rand(In, Max, Size)
    return Result
 end
 
-function ran.scrubMSH(MSH)
-   MSH[3][1] = ran.choose(ran.Application)
-   MSH[4][1] = ran.choose(ran.Facility)
-   MSH[5][1] = 'Main HIS'
-   MSH[6][1] = 'St. Micheals'
-   MSH[7][1] = ran.TimeStamp()
-   MSH[9][1] = 'ADT'
-   MSH[9][2] = ran.choose(ran.Event)
-   MSH[10] = util.guid(256)
-   MSH[11][1] = 'P'
-   MSH[12][1] = '2.6'
-   MSH:S()
-end
-
-function ran.scrubEVN(EVN)
-   EVN[2][1] = ran.TimeStamp()
-   EVN[6][1] = ran.TimeStamp()
-end
-
-function ran.scrubPID(PID)
-   PID[3][1][1] = math.random(9999999)
-   ran.NameAndSex(PID)
-   PID[5][1][1][1] = ran.lastName()
-   PID[7][1] = ran.Date()
-   PID[10][1][1] = ran.choose(ran.Race)
-   PID[18][1] = ran.AcctNo()
-   PID[11][1][3], PID[11][1][4] = ran.location()
-   PID[11][1][5] = math.random(99999)
-   PID[11][1][1][1] = math.random(999)..
-      ' '..ran.choose(ran.Street)
-   PID[19] = ran.SSN()
-   PID:S()
-end
-
-function ran.PV1(PV1)
-   PV1[8][1][2][1] = ran.lastName()
-   PV1[8][1][3] = ran.firstName()
-   PV1[8][1][4] = 'F'
-   PV1[19][1] = math.random(9999999)
-   PV1[44][1] = ran.TimeStamp()
-   PV1:S()
-end
-
-function ran.NK1(NK1)
-   for i = 1, math.random(6) do
-      NK1[i][1] = i
-      ran.Kin(NK1[i])
-   end
-end
-
-function ran.Kin(NK1)
-   NK1[2][1][1][1] = ran.lastName()  
-   NK1[2][1][2] = ran.firstName()
-   NK1[3][1] = ran.choose(ran.Relation)
-end
-
-ran.Sex = {'M', 'F'}
-
-ran.LastNames = {'Muir','Smith','Adams','Garland', 'Meade', 'Fitzgerald', 'WHITE'}
-ran.MaleNames = {'Fred','Jim','Gary','John'}
-ran.FemaleNames = {'Mary','Sabrina','Tracy'}
-ran.Race = {'AI', 'EU', 'Mixed', 'Martian', 'Unknown'}
-ran.Street = {'Delphi Cres.', 'Miller Lane', 'Yonge St.', 'Main Rd.'}
-ran.Relation = {'Grandchild', 'Second Cousin', 'Sibling', 'Parent'}
-ran.Event = {'A01', 'A03', 'A04', 'A05', 'A06', 'A07', 'A08'}
-ran.Facility = {'Lab', 'E&R'}
-ran.Application = { 'AcmeMed', 'MedPoke', 'CowZing' }
-
-function ran.lastName() return ran.choose(ran.LastNames) end
-
-function ran.choose(T)
+local function ranChoose(T)
    return T[math.random(#T)]
 end
 
-function ran.NameAndSex(PID)
-   if math.random(2) == 1 then
-      PID[8] = 'M'
-      PID[5][1][2] = ran.choose(ran.MaleNames)
-   else   
-      PID[8] = 'F'
-      PID[5][1][2] = ran.choose(ran.FemaleNames)      
-   end
-end
-
-function ran.firstName()
-   if math.random(2) == 1 then
-      return ran.choose(ran.MaleNames)
-   else   
-      return ran.choose(ran.FemaleNames)      
-   end
-end
-
-function ran.Date()
-   local T = os.date('*t')
-  
-   local newDate = '19'..rand(T.year,99,2)..
-   rand(T.month,12,2)..
-   rand(T.day,29,2)
-   
-   return newDate
-end
-
-function ran.TimeStamp()
+local function ranTimeStamp()
    local T = os.date('*t')
    
    local newDate = '20'..rand(T.year,tostring(T.year):sub(-2),2)..
@@ -127,24 +41,108 @@ function ran.TimeStamp()
    return newDate
 end
 
-function ran.AcctNo()
+local function ranNameAndSex(PID)
+   if math.random(2) == 1 then
+      PID[8] = 'M'
+      PID[5][1][2] = ranChoose(data.MaleNames)
+   else   
+      PID[8] = 'F'
+      PID[5][1][2] = ranChoose(data.FemaleNames)      
+   end
+end
+
+local function ranLastName() return ranChoose(data.LastNames) end
+
+local function ranDate()
+   local T = os.date('*t')
+  
+   local newDate = '19'..rand(T.year,99,2)..
+   rand(T.month,12,2)..
+   rand(T.day,29,2)
+   
+   return newDate
+end
+
+local function ranAcctNo()
    return math.random(99)..'-'..math.random(999)..'-'..math.random(999)
 end
 
-ran.Locations = { {'Chicago', 'IL'}, {'Toronto', 'ON'}, {'ST. LOUIS', 'MO'}, {'LA', 'CA'} }
-
-function ran.location()
-   local R = ran.choose(ran.Locations)
+local function ranLocation()
+   local R = ranChoose(data.Locations)
    return R[1], R[2]
 end
 
-function ran.SSN()
+local function ranSSN()
    return math.random(999)..'-'
           ..math.random(999)..'-'
           ..math.random(999)
 end
 
-function ran.addWeight(Out)
+local function ranFirstName()
+   if math.random(2) == 1 then
+      return ranChoose(data.MaleNames)
+   else   
+      return ranChoose(data.FemaleNames)      
+   end
+end
+
+local function ranScrubMSH(MSH)
+   MSH[3][1] = ranChoose(data.Application)
+   MSH[4][1] = ranChoose(data.Facility)
+   MSH[5][1] = 'Main HIS'
+   MSH[6][1] = 'St. Micheals'
+   MSH[7][1] = ranTimeStamp()
+   MSH[9][1] = 'ADT'
+   MSH[9][2] = ranChoose(data.Event)
+   MSH[10] = util.guid(256)
+   MSH[11][1] = 'P'
+   MSH[12][1] = '2.6'
+   MSH:S()
+end
+
+local function ranScrubEVN(EVN)
+   EVN[2][1] = ranTimeStamp()
+   EVN[6][1] = ranTimeStamp()
+end
+
+local function ranScrubPID(PID)
+   PID[3][1][1] = math.random(9999999)
+   ranNameAndSex(PID)
+   PID[5][1][1][1] = ranLastName()
+   PID[7][1] = ranDate()
+   PID[10][1][1] = ranChoose(data.Race)
+   PID[18][1] = ranAcctNo()
+   PID[11][1][3], PID[11][1][4] = ranLocation()
+   PID[11][1][5] = math.random(99999)
+   PID[11][1][1][1] = math.random(999)..
+      ' '..ranChoose(data.Street)
+   PID[19] = ranSSN()
+   PID:S()
+end
+
+local function ranPV1(PV1)
+   PV1[8][1][2][1] = ranLastName()
+   PV1[8][1][3] = ranFirstName()
+   PV1[8][1][4] = 'F'
+   PV1[19][1] = math.random(9999999)
+   PV1[44][1] = ranTimeStamp()
+   PV1:S()
+end
+
+local function ranKin(NK1)
+   NK1[2][1][1][1] = ranLastName()  
+   NK1[2][1][2] = ranFirstName()
+   NK1[3][1] = ranChoose(data.Relation)
+end
+
+local function ranNK1(NK1)
+   for i = 1, math.random(6) do
+      NK1[i][1] = i
+      ranKin(NK1[i])
+   end
+end
+
+local function ranAddWeight(Out)
    local OBX = Out.OBX[#Out.OBX+1]
    OBX[3][1] = 'WT'
    OBX[3][2] = 'WEIGHT'
@@ -153,7 +151,7 @@ function ran.addWeight(Out)
    return OBX
 end
    
-function ran.addHeight(Out)
+local function ranAddHeight(Out)
    local OBX = Out.OBX[#Out.OBX+1]
    OBX[3][1] = 'HT'
    OBX[3][2] = 'HEIGHT'
@@ -162,16 +160,31 @@ function ran.addHeight(Out)
    return OBX
 end
 
-function ran.RandomMessage()
+local function RandomMessage()
    local Out = hl7.message{vmd='random/generator.vmd', name='ADT'} 
-   ran.scrubMSH(Out.MSH)
-   ran.scrubEVN(Out.EVN)
-   ran.scrubPID(Out.PID)
-   ran.PV1(Out.PV1)
-   ran.NK1(Out.NK1)
-   ran.addWeight(Out)
-   ran.addHeight(Out)
+   ranScrubMSH(Out.MSH)
+   ranScrubEVN(Out.EVN)
+   ranScrubPID(Out.PID)
+   ranPV1(Out.PV1)
+   ranNK1(Out.NK1)
+   ranAddWeight(Out)
+   ranAddHeight(Out)
    return Out:S()   
 end
 
-return ran
+local HELP_DEF={
+   SummaryLine = "Generates HL7 sample messages",
+   Desc = "Generates HL7 sample messages from the seed data (hard-coded into the module)",
+   Usage = "ran.RandomMessage()",
+   ParameterTable=false,
+   Parameters = none,
+   Returns ={Hl7Message='Generated HL7 messages <u>string</u>'},
+   Title = 'ran.RandomMessage',  
+   SeeAlso = {{Title='ran.lua module on github', Link='https://github.com/interfaceware/iguana-tools/blob/master/shared/ran.lua'},
+      {Title='HL7 Random Message Generator', Link='http://help.interfaceware.com/v6/random-adt-message-generator'}},
+   Examples={'data=ran.RandomMessage()'}
+}
+ 
+help.set{input_function=RandomMessage,help_data=HELP_DEF}
+
+return RandomMessage
