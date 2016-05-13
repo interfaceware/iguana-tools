@@ -1,7 +1,3 @@
-The iguana-tools repository has a group of channels that show the usage of various helpful modules and technques with Iguana.
+This respository contains examples of various useful code tools that we have developed for Iguana.
 
-It's easy to set up Iguana 6.0 to be able to import channels from this repository directly.  This link to our documentation explains how:
-
-http://help.interfaceware.com/kb/iguana-apps-with-iguana-6-0
-
-Each channel has a URL to documentation related to the channel.
+Please see the <a href="http://help.interfaceware.com/category/building-interfaces/repositories/builtin-iguanatools">documentation on the Iguana Tools repo</a> in our wiki.
