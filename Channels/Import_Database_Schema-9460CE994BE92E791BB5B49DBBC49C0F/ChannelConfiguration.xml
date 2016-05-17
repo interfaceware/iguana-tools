@@ -10,8 +10,8 @@
    <from_http
       type="mapper"
       guid="Import_DBS_Schema-FromHTTP-ZEMQRVKZEToYfn"
-      commit_id="02737cf6330481e2ab16ff4788cf738daf16e733"
-      commit_comment="Small fix to SQLite implementation to deal with case sensitivity."
+      commit_id="74510dcbb6a4a9b65efdbee6359ecb0e95bf0a9b"
+      commit_comment="Fix MySQL."
       mapper_url_path="database/schema"/>
    <message_filter
       filter_after_logging="false"

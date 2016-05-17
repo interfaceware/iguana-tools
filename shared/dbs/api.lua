@@ -257,13 +257,14 @@ function mysql.tableDefinition(S, DB, Name)
    for i=1, #TInfo do
       Table:addColumn{name=TInfo[i].Field:S(), type=mysql.mapType(TInfo[i].Type:S()),key=#TInfo[i].Key:S()>0}
    end
-   return Def
+   return Table
 end
 
 Import[db.MY_SQL] = function(S,DB, T)
    local TabResults = DB:query{sql="SHOW TABLES"}
    for i=1, #TabResults do
-       mysql.tableDefinition(S, DB, TabResults[i].Tables_in_CRM:S())      
+      local DbName = DB:info().name
+      mysql.tableDefinition(S, DB, TabResults[i]['Tables_in_' .. DbName])     
    end
    return Tables
 end
