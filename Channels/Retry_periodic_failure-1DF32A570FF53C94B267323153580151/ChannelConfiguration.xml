@@ -7,8 +7,8 @@
    use_message_filter="false">
    <to_mapper
       guid="Retry_periodic_failure-To-HbR3VD3WspT9JP"
-      commit_id="09671159b3bec32b07aa84c892eb3e2109302df4"
-      commit_comment="Back to returning a local table.">
+      commit_id="9924409e8808cdece533a2a2a42de119016a4d51"
+      commit_comment="Fixed typo.">
       <dequeue_list>
          <dequeue
             source_name="self"
@@ -17,8 +17,8 @@
    </to_mapper>
    <from_mapper
       guid="Retry_periodic_failure-From-WRe23qm5GJ2cDc"
-      commit_id="a0187a8fcf28e5ace71597a68e91fae0fe447ed5"
-      commit_comment="Import Translators: Retry"
+      commit_id="86f825a31cb7dcf1218af2b221bfbe3790a3242a"
+      commit_comment="Changed calling of RandomMessage."
       poll_time="100000">
    </from_mapper>
 </channel>

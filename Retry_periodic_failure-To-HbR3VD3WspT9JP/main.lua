@@ -1,4 +1,4 @@
--- The retry module is very handy for handling situations where it make
+-- The retry module is very handy for handling situations where it makes
 -- sense to retry failed operations.
 
 -- http://help.interfaceware.com/v6/retry-example
@@ -15,14 +15,8 @@ local retry = require 'retry'
 
 math.randomseed(os.ts.time() % 1000)
 
-function main(Data)
-   iguana.stopOnError(true)
-   retry.call{func=UnreliableFunc,retry=20, pause=1, arg1=Data,
-             funcname='UnreliableFunc', errorfunc=ErrorFunction}
-end
-
 -- We simulate intermittent errors - both fatal and non fatal.
-function UnreliableFunc(Data)
+local function UnreliableFunc(Data)
    if math.random(8) == 1 then
       error("We have a intermittent non fatal error!")
    end
@@ -36,7 +30,7 @@ function UnreliableFunc(Data)
    return true
 end
 
-function ErrorFunction(Success, ErrorMessage)
+local function ErrorFunction(Success, ErrorMessage)
    if Success then
       iguana.logInfo("The function succeeded!")
    else
@@ -49,4 +43,10 @@ function ErrorFunction(Success, ErrorMessage)
       return Success
    end
    return Success
+end
+
+function main(Data)
+   iguana.stopOnError(true)
+   retry.call{func=UnreliableFunc,retry=20, pause=1, arg1=Data,
+             funcname='UnreliableFunc', errorfunc=ErrorFunction}
 end

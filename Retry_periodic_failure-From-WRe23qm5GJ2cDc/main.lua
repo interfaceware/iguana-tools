@@ -1,7 +1,7 @@
 -- require imports a shared module into the project (See Project Manager on left)
 -- http://help.interfaceware.com/v6/retry-example
 
-local ran = require 'ran'
+local RandomMessage = require 'ran'
 
 -- This translator instance is generating random HL7 messages to test out the
 -- the retry module.
@@ -13,6 +13,6 @@ function main()
    -- Push the ADT message through to destination
    -- Press 'RandomMessage' on right to navigate
    -- through code
-   queue.push{data=ran.RandomMessage()}
+   queue.push{data=RandomMessage()}
 end
 
