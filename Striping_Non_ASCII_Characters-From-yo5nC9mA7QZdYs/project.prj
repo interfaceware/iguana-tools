@@ -1,10 +1,10 @@
 {
     "LocalDependencies": [],
     "LuaDependencies": [
-        "binstrip"
+        "bin.strip"
     ],
     "OtherDependencies": [],
-    "timestamp": "1462913173",
+    "timestamp": "1463586563",
     "version_info": {
         "build": 0,
         "major": 6,

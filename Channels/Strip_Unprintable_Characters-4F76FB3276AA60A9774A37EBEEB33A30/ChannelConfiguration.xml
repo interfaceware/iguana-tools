@@ -1,7 +1,7 @@
 <channel
    name="Strip Unprintable Characters"
    guid="4F76FB3276AA60A9774A37EBEEB33A30"
-   description="Sometimes you have large strings containing non ascii characters that can cause some systems to hiccup.&#xD;&#xA;&#xD;&#xA;This example shows some simple fast code to handle this problem by removing them."
+   description="Sometimes you have large strings containing non ascii characters that can cause some systems to hiccup.&#xD;&#xA;&#xD;&#xA;This example shows some simple fast code to handle this problem by removing them.&#xD;&#xA;&#xD;&#xA;http://help.interfaceware.com/v6/strip-unprintable-characters "
    start_automatically="false"
    logging_level="1"
    use_message_filter="false">
@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Striping_Non_ASCII_Characters-From-yo5nC9mA7QZdYs"
-      commit_id="f82414578f7b829fcba1d2943be94303c4d6b92e"
-      commit_comment="Just changed to return a function."
+      commit_id="14cc1af0dac20ce057dd588d1f3dd5148eb6deee"
+      commit_comment="Changed to import one function."
       poll_time="10000">
    </from_mapper>
 </channel>
