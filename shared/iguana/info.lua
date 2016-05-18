@@ -1,3 +1,7 @@
+-- This module returns the build information for the Iguana instance. 
+-- This includes the operating system, CPU bit size and Iguana version
+
+-- http://help.interfaceware.com/v6/iguana-info 
 
 function iguana.info()
    local VI = iguana.version()
@@ -32,19 +36,30 @@ function iguana.info()
 end
 
 local helpInfo=[[{
-   "Desc": "Get the build information for this Iguana instance.  This includes the operating system, CPU bit size and Iguana version",
+   "Desc": "Get the build information for this Iguana instance. This includes the operating system, CPU bit size and Iguana version",
    "Returns": [
-         {"Desc": "A table containing all that information."}
+         {"Desc": "A table containing the Iguana Build Information <u>table</u>."}
    ],
    "SummaryLine": "Get the build information for this Iguana instance",
    "SeeAlso": [
    ],
-   "Title": "iguana.info()",
-   "Usage": "local Info = iguana.info()",
+   "Title": "iguana.info",
+   "Usage": "iguana.info()",
    "Examples": [
       "<pre>local Info = iguana.info()</pre>"
    ],
-   "ParameterTable": false
+   "ParameterTable": false,
+   "Parameters": [],
+   "SeeAlso":[
+      {
+         "Title":"iguana.info.lua on github",
+         "Link":"https://github.com/interfaceware/iguana-tools/blob/master/shared/iguana/info.lua"
+      },
+      {
+         "Title":"Iguana Info",
+         "Link":"http://help.interfaceware.com/v6/iguana-info"
+      }
+   ]
 }]]
 
 help.set{input_function=iguana.info, help_data=json.parse{data=helpInfo}}    
