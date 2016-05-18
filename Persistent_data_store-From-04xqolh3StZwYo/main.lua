@@ -4,7 +4,8 @@
 
 -- There are two version of this module. The store module was the original one.
 -- The store2 module was created later. It has the advantage of enabling one to use
--- multiple store instances in a single translator script.
+-- multiple store instances in a single translator script.  New code should use the
+-- the store2 module.
 
 -- http://help.interfaceware.com/v6/store-example
 

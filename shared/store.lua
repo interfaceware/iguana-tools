@@ -193,7 +193,7 @@ if help then
    local h = help.example()
    h.Title = 'store.name'
    h.Desc = 'Get the name of the SQLite database file to be used for the store'
-   h.Usage = 'local DatabaseFileName = store.name()'
+   h.Usage = 'store.name()'
    h.Parameters = {}
    h.Returns = {[1]={['Desc']='The name of the database file <u>string</u>'}}
    h.ParameterTable = false

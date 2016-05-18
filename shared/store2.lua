@@ -229,7 +229,6 @@ if help then
       [1]={['Key']={['Desc']='Unique Identifier <u>string</u>'}},
       [2]={['Value']={['Desc']='Value to store <u>string</u>'}}
    }
-   h.Returns = 'none.'
    h.Returns = {[1]={['Desc']='Message confirming deletion or nil <u>string</u>'}}
    h.ParameterTable = false
    h.Examples = {[1]=[[<pre>store:put('I am the Key', 'I am the Value')</pre>]]}

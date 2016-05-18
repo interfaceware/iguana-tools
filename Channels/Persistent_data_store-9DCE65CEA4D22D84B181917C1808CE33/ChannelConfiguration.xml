@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Persistent_data_store-From-04xqolh3StZwYo"
-      commit_id="dfac0da4d6869974affec4ab236abb0d40eae16c"
-      commit_comment="Shifted constants."
+      commit_id="caee510c39445b796023b0bddd8c796f66e7f0bf"
+      commit_comment="Updated comment."
       poll_time="100000">
    </from_mapper>
    <message_filter
