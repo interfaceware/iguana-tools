@@ -1,4 +1,3 @@
--- dbs.api - See http://help.interfaceware.com/v6/import-database-schema 
 -- This module gives a convenient API around the DBS schema.
 -- It has a method which can query a database and generate
 -- the DBS schema.  DBS schema perform the same role as a vmd based table grammar
@@ -11,6 +10,9 @@
 -- * SQLite
 -- It's relatively trivial to add support for other databases - if you need help adding support
 -- for another database type please reach out.
+
+-- http://help.interfaceware.com/v6/import-database-schema 
+-- http://help.interfaceware.com/v6/manipulate-database-schema
 
 -- We do set up some global constants
 dbs.integer = 'integer'
@@ -262,9 +264,9 @@ end
 
 Import[db.MY_SQL] = function(S,DB, T)
    local TabResults = DB:query{sql="SHOW TABLES"}
+   local DbName = DB:info().name
    for i=1, #TabResults do
-      local DbName = DB:info().name
-      mysql.tableDefinition(S, DB, TabResults[i]['Tables_in_' .. DbName])     
+       mysql.tableDefinition(S, DB, TabResults[i]['Tables_in_'..DbName])      
    end
    return Tables
 end
@@ -297,12 +299,18 @@ end
 
 local Help = {
    Title="table:addColumn",
+   Usage="Table:addColumn{name=&lt;column name&gt;, type=&lt;data type&gt;, key=&lt;true|false&gt;}",
    ParameterTable=true,
    Parameters={
-      {name={Desc="Name of the column to add."}},
-      {type={Desc="Data type of the column to add."}},
-      {key={Desc="Set to true is this column is a key column.", Opt=true}},
+      {name={Desc="Name of the column to add <u>string</u>."}},
+      {type={Desc="Data type of the column to add <u>string</u>."}},
+      {key={Desc="Set to true is this column is a key column (default = false) <u>boolean</u>.", Opt=true}},
    },
+   Returns={},
+   Examples={[[-- create a new non-key column
+Table:addColumn{name='LastName', type='string'}"]],
+      [[-- create a new key column
+Table:addColumn{name='PatientId', type='integer', key=true}"]]},
    Desc="Adds a column to a table definition."
 }
 
@@ -321,11 +329,18 @@ end
 
 local Help = {
    Title="schema:table",
+   Usage="schema:table{name=&lt;table name&gt;}",
    ParameterTable=true,
    Parameters={
-      {name={Desc="Name of the table."}},
+      {name={Desc="Name of the table <u>string</u>."}},
    },
-   Desc="Create or fetch a table definition."
+   Returns={{Desc="Schema definition of the added table <u>table</u>."}},
+   Examples={[[-- add definition for existing table "Invoice"
+   Schema:table{name='Invoice'}]],
+      [[-- add empty definition for new table "Patient"
+Schema:table{name='Patient'},
+]]},
+   Desc="Fetch a table definition from a database connection and add it to schema, if the table does not exist in the database an empty definition is created."
 }
 
 help.set{input_function=method.table,help_data=Help}
@@ -369,9 +384,12 @@ end
 
 local Help = {
    Title="schema:clear",
+   Usage="Schema:clear{}",
    ParameterTable=true,
-   Parameters={
-   },
+   Parameters={},
+   Returns={},
+   Examples={[[-- clear the schema
+Schema:clear{}]]},
    Desc="Clears the schema."
 }
 
@@ -399,11 +417,15 @@ end
 
 local Help = {
    Title="schema:import",
+   Usage="Schema:import{connection=<DB connection>}",
    ParameterTable=true,
    Parameters={
-      {connection={Desc="Live database connection."}}
+      {connection={Desc="Live database connection <u>db_connection object</u>."}}
    },
-   Desc="Queries the given database connection to create a set of schema based on the tables in the database."
+   Returns={{Desc="Message indicating the number of tables imported <u>string</u>."}},
+   Examples={[[-- import table schemas from a database
+Schema:import{connection=DB} ]]},
+   Desc="Queries the given database connection to create a set of schemas matching the tables in the database."
 }
 
 help.set{input_function=method.import,help_data=Help}
@@ -414,12 +436,16 @@ function method.addGroup(S, T)
 end
 
 local Help = {
-   Title="table:addGroup",
+   Title="schema:addGroup",
+   Usage="Schema:addGroup{name=&lt;group name&gt;, table_list&lt;array of tables&gt;}",
    ParameterTable=true,
    Parameters={
       {name={Desc="Name of the group to add."}},
       {table_list={Desc="Table array of tables to contain in the group."}},
    },
+   Returns={},
+   Examples={[[-- import table schemas from a database
+Schema:addGroup{name = "My new Group", table_list = NewGroupTables;} ]]},
    Desc="Adds a table group to the schema."
 }
 
@@ -439,19 +465,23 @@ end
 
 local Help = {
    Title="schema:dbs",
-   Usage=[[local DbsSchema = Schema:dbs()]],
+   Usage="Schema:dbs()",
    Examples={[[
 -- Generate DBS schema
 local DbsSchema = Schema:dbs()
+-- NOTE: The curly brace syntax also works
+local DbsSchema = Schema:dbs{}
+      
 -- Initialize DBS instance off the grammar
 local D = dbs.init{definition=Def}
+      
 -- Produce a recordset from the DBS instance
 local Records = D:tables()  
 ]]},
-   ParameterTable=true,
-   Parameters={
-   },
-   Desc="Generates DBS schema from the definitions given."
+   ParameterTable=false,
+   Parameters={},
+   Returns={{Desc="The generated DBS schema <u>string</u>."}},
+  Desc="Generates DBS schema from the definitions given."
 }
 
 help.set{input_function=method.dbs,help_data=Help}
@@ -467,11 +497,16 @@ end
 local Help = {
    Title="schema:tableList",
    ParameterTable=false,
-   Usage="local List = Schema:tableList()",
-   Parameters={
+   Usage="Schema:tableList()",
+   Parameters={},
+   Returns={
+      {Desc="List of tables <u>table</u>."}
    },
-   Desc="Gives a list of the tables defined in the schema."
+   Examples={[[-- list the tables in the schema
+local List = Schema:tableList()]]},
+   Desc="Gets a list of the names of the tables defined in the schema."
 }
+
 help.set{input_function=method.tableList,help_data=Help}
 
 local function NewSchema()
@@ -482,5 +517,29 @@ local function NewSchema()
    return S
 end
 
+local Help = {
+   Title="NewSchema",
+   Usage="NewSchema()",
+   ParameterTable=false,
+   Parameters={},
+   Returns={
+      {Desc="Empty database schema <u>table</u>."}
+   },
+   Examples={[[-- create an empty schema
+local Schema = NewSchema()]]},
+   Desc="Creates an empty database schema table, with various functions for working with databases, creating a DBS file, etc.",
+   SeeAlso={
+      {
+         Title="Import Database Schema",
+         Link="http://help.interfaceware.com/v6/import-database-schema"
+      },
+      {
+         Title="Source code for the dbs.api.lua module on github",
+         Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/dbs/api.lua"
+      }
+   },
+}
+
+help.set{input_function=NewSchema, help_data=Help}
 
 return NewSchema

@@ -1,5 +1,3 @@
--- See http://help.interfaceware.com/v6/manipulate-database-schema
---
 -- This channel shows another usage of the dbs.api
 -- The dbs.api offers a convenient interface from which
 -- to programmatically create tables and add columns to them.
@@ -14,6 +12,8 @@
 -- use the objects to create records in the salesforce.com
 -- application.  This is nice because the annotations are really
 -- nice for these types of table like objects.
+
+-- http://help.interfaceware.com/v6/manipulate-database-schema
 
 local ToJson = require 'ToJson'
 

@@ -10,8 +10,8 @@
    <from_http
       type="mapper"
       guid="Import_DBS_Schema-FromHTTP-ZEMQRVKZEToYfn"
-      commit_id="74510dcbb6a4a9b65efdbee6359ecb0e95bf0a9b"
-      commit_comment="Fix MySQL."
+      commit_id="afcd2e68f6aeebe409d767acb0bc5925ff86fa98"
+      commit_comment="Put fixes back in from Bret."
       mapper_url_path="database/schema"/>
    <message_filter
       filter_after_logging="false"
