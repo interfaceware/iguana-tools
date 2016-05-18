@@ -9,8 +9,8 @@
    </to_channel>
    <from_mapper
       guid="Send_rich_HTML_email-From-BL5Nx5meq4hFEB"
-      commit_id="1eccbafa7c35c7f993416106925c3b154b95962b"
-      commit_comment="Put in password encryption module."
+      commit_id="4a0bc47d96c70eab19508a19f22c30a0d78b554f"
+      commit_comment="Import Translators: repos"
       poll_time="10000">
    </from_mapper>
 </channel>

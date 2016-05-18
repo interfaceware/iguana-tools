@@ -58,14 +58,6 @@ end
 -- Most mailers support UTF-8
 local defaultCharset = 'utf8'
  
--- Read the passed in filespec into a local variable.
-function mime.readFile(Filename)
-   local F = assert(io.open(Filename, "rb"))
-   local Data = F:read("*a")
-   F:close()
-   return Data
-end
-    
 -- Base64 encode the content passed in. Break the encoded data into reasonable lengths per RFC2821 and friends.
 -- Most mail clients can handle about 990-1000 - Maxline can be reduced down to 72 for debugging.
 local function Base64Encode(Content)
@@ -191,9 +183,17 @@ function mime.send(args)
    end
 end
  
+-- Read the passed in filespec into a local variable.
+function mime.readFile(Filename)
+   local F = assert(io.open(Filename, "rb"))
+   local Data = F:read("*a")
+   F:close()
+   return Data
+end
+
 local mimehelp = {
    Title="mime.send";
-   Usage="mime.send{server=<value> [, username=<value>] [, ...]}",
+   Usage="mime.send{server=&lt;value&gt; [, username=&lt;value&gt;] [, ...]}",
    SummaryLine="Sends an email using the SMTP protocol.",
    Desc=[[Sends an email using the SMTP protocol. A wrapper around net.smtp.send.
    Accepts the same parameters as net.smtp.send, with an additional "attachments"
@@ -228,14 +228,6 @@ local mimehelp = {
 
 help.set{input_function=mime.send, help_data=mimehelp}
 
--- Read the passed in filespec into a local variable.
-function mime.readFile(Filename)
-   local F = assert(io.open(Filename, "rb"))
-   local Data = F:read("*a")
-   F:close()
-   return Data
-end
-
  
 local mimehelp = {
    Title="mime.readFile";
@@ -255,10 +247,6 @@ local mimehelp = {
 local Template = mime.readFile(ProjectPath..'template.html')]],
    };
    SeeAlso={
-      {
-         Title="Send rich HTML email",
-         Link="http://help.interfaceware.com/v6/mime-email-client"
-      },
       {
          Title="Send rich HTML email",
          Link="http://help.interfaceware.com/v6/mime-email-client"
