@@ -7,8 +7,8 @@
    use_message_filter="false">
    <to_mapper
       guid="Reformat_Report-To-fG8bMCBCqMELNK"
-      commit_id="c7292d68ffd91a98a84217047a28c84432982586"
-      commit_comment="Using local function calling convention.">
+      commit_id="34b5afee0bf7a589895a70b39e06839616a9f3c6"
+      commit_comment="Import Translators: Reformat report.">
    </to_mapper>
    <from_channel/>
 </channel>
