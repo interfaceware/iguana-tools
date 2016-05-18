@@ -264,9 +264,8 @@ end
 
 Import[db.MY_SQL] = function(S,DB, T)
    local TabResults = DB:query{sql="SHOW TABLES"}
-   local DbName = DB:info().name
    for i=1, #TabResults do
-       mysql.tableDefinition(S, DB, TabResults[i]['Tables_in_'..DbName])      
+       mysql.tableDefinition(S, DB, TabResults[i][1])      
    end
    return Tables
 end

@@ -10,8 +10,8 @@
    <from_http
       type="mapper"
       guid="Import_DBS_Schema-FromHTTP-ZEMQRVKZEToYfn"
-      commit_id="afcd2e68f6aeebe409d767acb0bc5925ff86fa98"
-      commit_comment="Put fixes back in from Bret."
+      commit_id="c26fb3b12861cac76c9e8c87b0bf00c3e14ee0c0"
+      commit_comment="Another fix for the MySQL implementation - cannot assume that name of mysql database is the same as the name of the database - using index of 1 works with SHOW TABLES."
       mapper_url_path="database/schema"/>
    <message_filter
       filter_after_logging="false"
