@@ -1,3 +1,8 @@
+-- This module is used to help generate random HL7
+-- data using the translator.
+
+-- http://help.interfaceware.com/v6/random-message-generator
+
 -- seed data used for generation
 local data = {}
 data.Sex = {'M', 'F'}
@@ -174,14 +179,14 @@ end
 
 local HELP_DEF={
    SummaryLine = "Generates HL7 sample messages",
-   Desc = "Generates HL7 sample messages from the seed data (hard-coded into the module)",
+   Desc = "Generates sample HL7 ADT messages from the seed data (hard-coded into the module)",
    Usage = "ran.RandomMessage()",
    ParameterTable=false,
    Parameters = none,
-   Returns ={Hl7Message='Generated HL7 messages <u>string</u>'},
+   Returns = {{Desc='A generated HL7 ADT message <u>string</u>'}},
    Title = 'ran.RandomMessage',  
-   SeeAlso = {{Title='ran.lua module on github', Link='https://github.com/interfaceware/iguana-tools/blob/master/shared/ran.lua'},
-      {Title='HL7 Random Message Generator', Link='http://help.interfaceware.com/v6/random-adt-message-generator'}},
+   SeeAlso = {{Title='Source code for the ran.lua module on github', Link='https://github.com/interfaceware/iguana-tools/blob/master/shared/ran.lua'},
+      {Title='HL7 Random Message Generator', Link='http://help.interfaceware.com/v6/random-message-generator'}},
    Examples={'data=ran.RandomMessage()'}
 }
  

@@ -47,7 +47,7 @@ if not string.trimWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua on github",
+            Title="Source code for the stringutil.lua module on github",
             Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
@@ -89,7 +89,7 @@ if not string.trimRWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua on github",
+            Title="Source code for the stringutil.lua module on github",
             Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
@@ -131,7 +131,7 @@ if not string.trimLWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua on github",
+            Title="Source code for the stringutil.lua module on github",
             Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
@@ -173,7 +173,7 @@ if not string.compactWS then
       };
       SeeAlso={
          {
-            Title="stringutil.lua on github",
+            Title="Source code for the stringutil.lua module on github",
             Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
@@ -217,7 +217,7 @@ if not string.capitalize then
       };
       SeeAlso={
          {
-            Title="stringutil.lua on github",
+            Title="Source code for the stringutil.lua module on github",
             Link="https://github.com/interfaceware/iguana-tools/blob/master/shared/stringutil.lua"
          },
          {
