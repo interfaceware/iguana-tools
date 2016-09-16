@@ -54,11 +54,14 @@ local function createMsgNode(Hash)
    return {hash=Hash, next=nil}
 end
 
-local function storeMessages(X)
+local function storeMessages(X, Transform)
    local LoggedMessage, LoggedMessageHash, LoggedMessageStamp = nil, nil, nil
    local numMessages = X.export:childCount('message')
    for i = numMessages, 1, -1  do
       LoggedMessage      = X.export:child("message", i).data:nodeValue()
+      if Transform then
+         LoggedMessage = Transform(LoggedMessage)   
+      end
       LoggedMessageHash  = util.md5(LoggedMessage)
       LoggedMessageStamp = X.export:child("message", i).time_stamp:nodeValue()
       
@@ -113,7 +116,11 @@ function dup.isDuplicate(Params)
    -- Uncomment line below when testing annotations. 
    -- Will force queue to always be empty so fetch/store annotations
    -- can be viewed. 
-   -- dup.queue = Queue.create()
+   -- dup.queue = Queue.create() 
+   local Transform = Params.transform
+   if Transform then 
+     Params.data = Transform(Params.data) 
+   end
    local Hash           = util.md5(Params.data)
    local LookbackAmount = Params.lookback_amount
    -- Populate in memory structures with lookbackAmount # of messages. 
@@ -122,7 +129,7 @@ function dup.isDuplicate(Params)
       iguana.logInfo('dup.lua: Fetching Initial Messages!')
       local messages = fetchMessages(LookbackAmount)
       iguana.logInfo('dup.lua: Storing Initial Messages!')
-      storeMessages(messages)
+      storeMessages(messages, Transform)
       iguana.logInfo('dup.lua: Finished Initial fetch/store of '
          .. dup.queue.size .. ' messages!')
    else  
@@ -160,16 +167,10 @@ local HELP_DEF=[[{
    "Title": "dup.isDuplicate",
    "Usage": "dup.isDuplicate{data=&#60;value&#62;, lookback_amount=&#60;number&#62;}",
    "Parameters": [
-      {
-         "data": {
-            "Desc": "A message to be checked to see if it is a duplicate <u>string</u>. "
-         }
-      },
-      {
-         "lookback_amount": {
-            "Desc": "Number of messages to look back at to check for duplicates <u>number</u>. "
-         }
-      }
+      {"data"           :{"Desc": "A message to be checked to see if it is a duplicate <u>string</u>."}},
+      {"transform"      :{"Desc": "An optional function which can be applied to messages to remove trivial differences.  The functon takes a string argument with each message and returns a string of the transformed message.", "Opt" : true}},
+      {"lookback_amount":{"Desc": "Number of messages to look back at to check for duplicates <u>number</u>. "}},
+
    ],
    "Examples": [
       "<pre>local IsDuplicate = dup.isDuplicate{data=Data, lookback_amount=800}</pre>"

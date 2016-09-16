@@ -45,7 +45,7 @@
       error_handling="0"
       use_translator_filter="true"
       translator_guid="Remove_Duplicate_Messages-Filter-rS0aDvqsezmqca"
-      translator_commit_id="6a18591320f948952594c1619c3dec073034b11a"
-      translator_commit_comment="Import Translators: Remove dups Julian">
+      translator_commit_id="506dab0249dac830fd290723f93f85052f7756ed"
+      translator_commit_comment="Put in transform function.">
    </message_filter>
 </channel>
