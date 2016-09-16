@@ -1,0 +1,36 @@
+<channel
+   name="Log Annotate"
+   guid="069E7B75C2154B722F028DF3AC4A2733"
+   description="Change the logging behavior of Iguana to prefix each log entry with the type of translator instance we have.&#xD;&#xA;&#xD;&#xA;See: http://help.interfaceware.com/v6/log_annotate ‎"
+   start_automatically="true"
+   logging_level="1"
+   use_message_filter="true">
+   <to_mapper
+      guid="Log_Annotate-To-ohJ9txVqiBYvic"
+      commit_id="83249e0bc8c577ea1f168c8b79bd31a27a30c981"
+      commit_comment="First commit of destination component.">
+      <dequeue_list>
+         <dequeue
+            source_name="self"
+            dequeue_guid="24AD504E395C6266D3B3345D81DD1B7C"/>
+      </dequeue_list>
+   </to_mapper>
+   <from_http
+      type="mapper"
+      guid="Log_Annotate-FromHTTP-aj4vyLzGEMCYKR"
+      commit_id="81b7c695e1889eb07aab24d86f057626e28ea6b5"
+      commit_comment="Changed comment."
+      mapper_url_path="log_annotate/"/>
+   <message_filter
+      filter_after_logging="true"
+      log_pre_post_filter_message="true"
+      filter_vmd_path=""
+      transformation_mode="0"
+      scripted_transformation_configuration_name="default"
+      error_handling="0"
+      use_translator_filter="true"
+      translator_guid="Log_Annotate-Filter-j1GHgvL4U4GBl7"
+      translator_commit_id="6be2d70facbbbce687b2cd75aede753ec71d7552"
+      translator_commit_comment="First commit of filter.">
+   </message_filter>
+</channel>
