@@ -1,0 +1,16 @@
+<channel
+   name="Database Query Caching"
+   guid="C66D737B7899CDBE0C1907DA17C887A7"
+   description="This demo channel presents a simple method for caching database queries in memory. This can significantly boosts performance for queries that recur frequently."
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="Database_Caching-From-YAEFX4s2Jr4CTe"
+      commit_id="ddfaa20cc024eee100743a9b5f69b2a3ef969e7b"
+      commit_comment="Shorter lines to bring annotations over."
+      poll_time="10000">
+   </from_mapper>
+</channel>
