@@ -1,0 +1,16 @@
+<channel
+   name="Database Query Caching"
+   guid="65102E43821880636FC8C710B428A484"
+   description="This demo channel presents a simple method for caching database queries in memory. This can significantly boost performance for queries that recur frequently.&#xD;&#xA;&#xD;&#xA;See: https://help.interfaceware.com/v6/database-query-caching"
+   start_automatically="false"
+   logging_level="1"
+   use_message_filter="false">
+   <to_channel>
+   </to_channel>
+   <from_mapper
+      guid="Database_Query_Caching-From-zjtutVifRy78lO"
+      commit_id="0aab0392283928d54c4f5f974d6ee4b472c33396"
+      commit_comment="First commit"
+      poll_time="10000">
+   </from_mapper>
+</channel>

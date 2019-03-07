@@ -1,0 +1,15 @@
+{
+    "LocalDependencies": [],
+    "LuaDependencies": [
+        "db.querycache"
+    ],
+    "OtherDependencies": [
+        "dbCacheExample.db"
+    ],
+    "timestamp": "1551975784",
+    "version_info": {
+        "build": 0,
+        "major": 6,
+        "minor": 0
+    }
+}
